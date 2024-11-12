@@ -1,33 +1,31 @@
 // src/components/VoiceInput.js
-import React, { useState } from 'react';
-import { Button, TextField } from '@mui/material';
+import React, { useState, useContext } from 'react';
+import { Button, TextField, Typography } from '@mui/material';
 import MicIcon from '@mui/icons-material/Mic';
-import { transcribeAudio } from '../utils/googleServices';
+import { AppContext } from '../context/AppContext';
+import { transcribeAudio } from '../services/speechService';
 
-const VoiceInput = ({ onTranscription }) => {
+const VoiceInput = () => {
+  const { setTranscription, loading, setLoading } = useContext(AppContext);
   const [input, setInput] = useState('');
 
-  // Function to handle audio recording and transcription
-  const startVoiceRecognition = () => {
+  const handleVoiceInput = async () => {
+    setLoading(true);
     const recognition = new window.webkitSpeechRecognition();
     recognition.lang = 'ko-KR';
     recognition.interimResults = true;
 
     recognition.onresult = async (event) => {
-      // Get the transcription text
-      const transcript = Array.from(event.results)
-        .map(result => result[0])
-        .map(result => result.transcript)
-        .join('');
+      const transcript = event.results[0][0].transcript;
       setInput(transcript);
+      const finalTranscription = await transcribeAudio(transcript);
+      setTranscription(finalTranscription);
+      setLoading(false);
+    };
 
-      // Call the transcribeAudio function to process the text
-      const response = await transcribeAudio(transcript);
-      if (response && response[0] && response[0].alternatives) {
-        const finalText = response[0].alternatives[0].transcript;
-        setInput(finalText);
-        onTranscription(finalText);
-      }
+    recognition.onerror = (error) => {
+      console.error('Speech recognition error:', error);
+      setLoading(false);
     };
 
     recognition.start();
@@ -35,19 +33,10 @@ const VoiceInput = ({ onTranscription }) => {
 
   return (
     <div>
-      <Button
-        variant="outlined"
-        startIcon={<MicIcon />}
-        onClick={startVoiceRecognition}
-      >
+      <Button variant="outlined" startIcon={<MicIcon />} onClick={handleVoiceInput} disabled={loading}>
         음성 입력
       </Button>
-      <TextField
-        fullWidth
-        value={input}
-        placeholder="도착지 입력 중..."
-        InputProps={{ readOnly: true }}
-      />
+      <TextField fullWidth value={input} placeholder="도착지 입력 중..." />
     </div>
   );
 };
