@@ -81,6 +81,3 @@ export const Sub1 = ({ className, ...props }) => {
     </div>
   );
 };
-
-
-export default Sub1; 
