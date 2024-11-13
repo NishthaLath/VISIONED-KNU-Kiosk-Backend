@@ -10,49 +10,45 @@ const VoiceInput = () => {
   const [input, setInput] = useState('');
   const [response, setResponse] = useState('');
 
-  // Function to handle voice input using browser's Speech Recognition API
   const handleVoiceInput = async () => {
     setLoading(true);
-    const recognition = new window.webkitSpeechRecognition();
-    recognition.lang = 'ko-KR';
-    recognition.interimResults = true;
 
-    recognition.onresult = async (event) => {
-      // Get the transcript from the voice input
-      const transcript = event.results[0][0].transcript;
-      setInput(transcript);
+    try {
+      const recognition = new window.webkitSpeechRecognition();
+      recognition.lang = 'ko-KR';
+      recognition.interimResults = true;
 
-      try {
-        // Send the transcribed text to the backend for Dialogflow processing
-        const sessionId = 'user-session-123'; // Use a unique session ID for each user session
-        const dialogflowResponse = await sendQueryToDialogflow(transcript, sessionId);
+      recognition.onresult = async (event) => {
+        const transcript = event.results[0][0].transcript;
+        setInput(transcript);
 
-        // Update the transcription and response state
+        const dialogflowResponse = await sendQueryToDialogflow(transcript, 'user-session-123');
         setTranscription(transcript);
         setResponse(dialogflowResponse.responseText);
-      } catch (error) {
-        console.error('Error in Dialogflow response:', error);
-        setResponse('An error occurred while processing your request.');
-      } finally {
-        setLoading(false);
-      }
-    };
+      };
 
-    recognition.onerror = (error) => {
-      console.error('Speech recognition error:', error);
+      recognition.onerror = (error) => {
+        console.error('Speech recognition error:', error);
+        setResponse('Speech recognition failed.');
+      };
+
+      recognition.start();
+    } catch (error) {
+      console.error('Error in voice input:', error);
+      setResponse('An error occurred while capturing voice input.');
+    } finally {
       setLoading(false);
-    };
-
-    recognition.start();
+    }
   };
 
   return (
-    <div>
+    <div style={{ textAlign: 'center', padding: '20px' }}>
       <Button
         variant="outlined"
         startIcon={<MicIcon />}
         onClick={handleVoiceInput}
         disabled={loading}
+        style={{ fontSize: '1.2em', padding: '10px 20px', marginBottom: '15px' }}
       >
         음성 입력
       </Button>
@@ -60,6 +56,7 @@ const VoiceInput = () => {
         fullWidth
         value={input}
         placeholder="도착지 입력 중..."
+        style={{ fontSize: '1.2em', marginBottom: '15px' }}
       />
       <Typography variant="h6" style={{ marginTop: '10px' }}>
         응답: {response}
