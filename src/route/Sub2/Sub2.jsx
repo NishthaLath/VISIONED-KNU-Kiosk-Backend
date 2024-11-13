@@ -26,6 +26,7 @@ export const Sub2 = ({ className, ...props }) => {
       <img
         className="image-removebg-preview-19-2"
         src="image-removebg-preview-19-20.png"
+        alt = ""
       />
       <div className="rectangle-5"></div>
       <div className="depth-4-frame-5">
@@ -79,10 +80,12 @@ export const Sub2 = ({ className, ...props }) => {
       <img
         className="image-removebg-preview-23-1"
         src="image-removebg-preview-23-10.png"
+        alt = ""
       />
       <img
         className="image-removebg-preview-24-1"
         src="image-removebg-preview-24-10.png"
+        alt = ""
       />
       <div className="rectangle-52"></div>
         <div className="depth-4-frame-53">
@@ -110,3 +113,5 @@ export const Sub2 = ({ className, ...props }) => {
     </div>
   );
 };
+
+export default Sub2;

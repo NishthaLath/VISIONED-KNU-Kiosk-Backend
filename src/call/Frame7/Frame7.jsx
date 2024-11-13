@@ -15,6 +15,7 @@ export const Frame7 = ({ className, ...props }) => {
       <img
         className="image-removebg-preview-19-2"
         src="image-removebg-preview-19-20.png"
+        alt =""
       />
       <div className="depth-4-frame-5">
         <div className="div">
@@ -43,7 +44,9 @@ export const Frame7 = ({ className, ...props }) => {
         </div>
       </div>
       <div className="line-3"></div>
-      <img className="image-10" src="image-100.png" />
+      <img className="image-10" src="image-100.png" alt =""/>
     </div>
   );
 };
+
+export default Frame7;

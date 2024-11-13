@@ -48,12 +48,14 @@ export const Sub1 = ({ className, ...props }) => {
             <img
                 className="image-removebg-preview-18-1"
               src="image-removebg-preview-18-10.png"
+              alt = "image-removebg-preview-18-10"
             />
             <img
               className="image-removebg-preview-19-2"
               src="image-removebg-preview-19-20.png"
+              alt="image-removebg-preview-19-20"
             />
-            <img className="image" src="image0.png" />
+            <img className="image" src="image0.png" alt = "" />
             <div className="depth-4-frame-4">
               <input
                   type="text"
@@ -81,3 +83,5 @@ export const Sub1 = ({ className, ...props }) => {
     </div>
   );
 };
+
+export default Sub1;

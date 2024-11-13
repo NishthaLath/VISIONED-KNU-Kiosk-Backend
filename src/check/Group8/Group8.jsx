@@ -22,6 +22,7 @@ export const Group8 = ({ className, ...props }) => {
         <img
           className="image-removebg-preview-19-2"
           src="image-removebg-preview-19-20.png"
+          alt =""
         />
         <div className="depth-2-frame-0">
           <div className="depth-3-frame-0"
@@ -70,6 +71,7 @@ export const Group8 = ({ className, ...props }) => {
         <img
           className="image-removebg-preview-21-1"
           src="image-removebg-preview-21-10.png"
+          alt = ""
         />
         <div className="depth-4-frame-5">
           <div className="div4">
@@ -120,6 +122,7 @@ export const Group8 = ({ className, ...props }) => {
         <img
           className="image-removebg-preview-21-2"
           src="image-removebg-preview-21-20.png"
+          alt = ""
         />
         <div className="image-3"></div>
         <div className="depth-2-frame-4">
@@ -171,18 +174,20 @@ export const Group8 = ({ className, ...props }) => {
           </div>
         </div>
         <div className="image-8"></div>
-        <img className="line-1" src="line-10.svg" />
+        <img className="line-1" src="line-10.svg" alt = ""/>
         <div className="line-2"></div>
-        <img className="image-9" src="image-90.png" />
+        <img className="image-9" src="image-90.png" alt = ""/>
       </div>
       <div className="group-72">
         <img
           className="image-removebg-preview-21-3"
           src="image-removebg-preview-21-30.png"
+          alt = ""
         />
         <img
           className="image-removebg-preview-21-4"
           src="image-removebg-preview-21-40.png"
+          alt = ""
         />
         <div className="rectangle-1"></div>
       </div>
@@ -214,3 +219,5 @@ export const Group8 = ({ className, ...props }) => {
     </div>
   );
 };
+
+export default Group8;

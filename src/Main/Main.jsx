@@ -30,6 +30,7 @@ export const Main = ({ className, ...props }) => {
       <img
         className="image-removebg-preview-19-2"
         src="image-removebg-preview-19-20.png"
+        alt = ""
       />
       <div className="div2">
         도착지 약도
@@ -50,3 +51,5 @@ export const Main = ({ className, ...props }) => {
     </div>
     );
 };
+
+export default Main;
