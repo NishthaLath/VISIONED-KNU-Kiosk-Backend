@@ -1,0 +1,269 @@
+.sub-1,
+.sub-1 * {
+  box-sizing: border-box;
+}
+.sub-1 {
+  background: #ffffff;
+  height: 844px;
+  position: relative;
+  overflow: hidden;
+}
+.sub-1 .group-4 {
+  position: absolute;
+  inset: 0;
+}
+.sub-1 .group-3 {
+  width: 426px;
+  height: 815px;
+  position: static;
+}
+.sub-1 .group-2 {
+  width: 426px;
+  height: 677px;
+  position: static;
+}
+.sub-1 .group-1 {
+  width: 426px;
+  height: 677px;
+  position: static;
+}
+.sub-1 .rectangle-1 {
+  background: #a3cca2;
+  border-radius: 10px;
+  width: 188px;
+  height: 82px;
+  position: absolute;
+  left: 33px;
+  top: 59px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.sub-1 .rectangle-2 {
+  background: #a3cca2;
+  border-radius: 10px;
+  width: 331px;
+  height: 183px;
+  position: absolute;
+  left: 29px;
+  top: 271px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.sub-1 .rectangle-4 {
+  background: rgba(163, 204, 162, 0.04);
+  border-radius: 10px;
+  width: 331px;
+  height: 72px;
+  position: absolute;
+  left: 29px;
+  top: 168px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.sub-1 .depth-4-frame-1 {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  align-items: center;
+  justify-content: flex-start;
+  position: absolute;
+  left: -36px;
+  top: 69px;
+  overflow: hidden;
+}
+.sub-1 .div {
+  text-align: center;
+  font-family: "NotoSerif-DisplayBold", sans-serif;
+  font-size: 32px;
+  line-height: 21px;
+  font-weight: 400;
+  position: relative;
+  width: 326px;
+  height: 57px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.div-span {
+  color: #121417;
+  font-family: "NotoSerif-DisplayBold", sans-serif;
+  font-size: 32px;
+  line-height: 21px;
+  font-weight: 400;
+}
+.div-span2 {
+  color: #52595f;
+  font-family: "NotoSerif-DisplayBold", sans-serif;
+  font-size: 32px;
+  line-height: 21px;
+  font-weight: 400;
+}
+.sub-1 .depth-4-frame-2 {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  align-items: center;
+  justify-content: flex-start;
+  width: 284px;
+  height: 111px;
+  position: absolute;
+  left: 56px;
+  top: 281px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+.sub-1 .div2 {
+  color: #000000;
+  text-align: center;
+  font-family: "NotoSerif-DisplayBold", sans-serif;
+  font-size: 32px;
+  line-height: 18px;
+  font-weight: 400;
+  position: relative;
+  width: 327px;
+  height: 152px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.sub-1 .depth-4-frame-3 {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  align-items: center;
+  justify-content: flex-start;
+  width: 284px;
+  height: 111px;
+  position: absolute;
+  left: 56px;
+  top: 495px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+.sub-1 .div3 {
+  color: #ffffff;
+  text-align: center;
+  font-family: "NotoSerif-DisplayBold", sans-serif;
+  font-size: 32px;
+  line-height: 18px;
+  font-weight: 400;
+  position: relative;
+  width: 327px;
+  height: 152px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.sub-1 .image-removebg-preview-18-1 {
+  width: 47px;
+  height: 51px;
+  position: absolute;
+  left: 178px;
+  top: 376px;
+  box-shadow: #a3cca2;
+  object-fit: cover;
+}
+.sub-1 .image-removebg-preview-19-2 {
+  width: 102px;
+  height: 103px;
+  position: absolute;
+  left: 288px;
+  top: -6px;
+  object-fit: cover;
+}
+.sub-1 .image {
+  border-radius: 10px;
+  width: 331px;
+  height: 194px;
+  position: absolute;
+  left: 32px;
+  top: 477px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  object-fit: cover;
+}
+.sub-1 .depth-4-frame-4 {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  align-items: center;
+  justify-content: flex-start;
+  position: absolute;
+  left: 34px;
+  top: 177px;
+  overflow: hidden;
+}
+.sub-1 .div4 {
+  color: #121417;
+  text-align: left;
+  font-family: "NotoSerif-DisplayBold", sans-serif;
+  font-size: 32px;
+  line-height: 21px;
+  font-weight: 400;
+  position: relative;
+  width: 326px;
+  height: 140px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.sub-1 .depth-3-frame-2 {
+  background: #0d990a;
+  border-radius: 12px;
+  border-style: solid;
+  border-color: #000000;
+  border-width: 1px;
+  padding: 0px 16px 0px 16px;
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: center;
+  justify-content: center;
+  width: 343px;
+  height: 61px;
+  min-width: 84px;
+  max-width: 480px;
+  position: absolute;
+  left: 27px;
+  top: 748px;
+  overflow: hidden;
+}
+.sub-1 .depth-4-frame-0 {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.div-span3 {
+  color: #121417;
+  font-family: "NotoSerif-DisplayBold", sans-serif;
+  font-size: 32px;
+  line-height: 21px;
+  font-weight: 400;
+}
+.div-span4 {
+  color: #f6fbff;
+  font-family: "NotoSerif-DisplayBold", sans-serif;
+  font-size: 32px;
+  line-height: 21px;
+  font-weight: 400;
+}
+
+.depth-4-frame-4 {
+  padding: 0px;               /* Adds space inside the frame */
+  border: 1px solid #ddd;      /* Light gray border around the frame */
+  border-radius: 8px;          /* Rounds the corners */
+  background-color: #f9f9f9;   /* Light background color */
+  box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1); /* Subtle shadow for depth */
+  margin-top: 0px;            /* Adds space above the frame */
+  font-size: 0.1em;              /* Sets a base font size */
+  color: #333;                 /* Dark text color for readability */
+  width: 70%;                 /* Full width within its container */
+}
+
+.depth-4-frame-4 input,
+.depth-4-frame-4[contenteditable="true"] {
+  outline: none;               /* Removes the default focus outline */
+  width: 100%;                 /* Ensures the input or content fills the frame */
+  font-size: 0.5em;              /* Matches the font size of the frame */
+  color: inherit;              /* Inherits the frame’s text color */
+  background: transparent;     /* Transparent background to blend with frame */
+  border: none;                /* Removes inner border (if input) */
+  padding: 5px;                /* Adds padding inside input or content-editable div */
+}

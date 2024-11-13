@@ -1,0 +1,129 @@
+.frame-7,
+.frame-7 * {
+  box-sizing: border-box;
+}
+.frame-7 {
+  background: #ffffff;
+  height: 844px;
+  position: relative;
+  overflow: hidden;
+}
+.frame-7 .rectangle-1 {
+  background: #a3cca2;
+  border-radius: 10px;
+  width: 188px;
+  height: 82px;
+  position: absolute;
+  left: 31px;
+  top: 30px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.frame-7 .image-removebg-preview-19-2 {
+  width: 102px;
+  height: 103px;
+  position: absolute;
+  left: 288px;
+  top: -6px;
+  object-fit: cover;
+}
+.frame-7 .depth-4-frame-5 {
+  padding: 0px 0px 6px 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  align-items: center;
+  justify-content: flex-start;
+  position: absolute;
+  left: -38px;
+  top: 40px;
+  overflow: hidden;
+}
+.frame-7 .div {
+  text-align: center;
+  font-family: "NotoSerif-DisplayBold", sans-serif;
+  font-size: 32px;
+  line-height: 21px;
+  font-weight: 400;
+  position: relative;
+  width: 326px;
+  height: 57px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.div-span {
+  color: #121417;
+  font-family: "NotoSerif-DisplayBold", sans-serif;
+  font-size: 32px;
+  line-height: 21px;
+  font-weight: 400;
+}
+.div-span2 {
+  color: #52595f;
+  font-family: "NotoSerif-DisplayBold", sans-serif;
+  font-size: 32px;
+  line-height: 21px;
+  font-weight: 400;
+}
+.frame-7 .image-7 {
+  width: 294px;
+  height: 136px;
+  position: absolute;
+  left: -104px;
+  top: 566px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.frame-7 .image-8 {
+  width: 294px;
+  height: 136px;
+  position: absolute;
+  left: -104px;
+  top: 566px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.frame-7 .depth-4-frame-24 {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  align-items: center;
+  justify-content: flex-start;
+  width: 483px;
+  position: absolute;
+  left: 36px;
+  top: 227px;
+  overflow: hidden;
+}
+.frame-7 .div2 {
+  color: #121417;
+  text-align: left;
+  font-family: "NotoSerif-DisplayBold", sans-serif;
+  font-size: 32px;
+  line-height: 21px;
+  font-weight: 400;
+  position: relative;
+  align-self: stretch;
+  height: 209px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.frame-7 .line-3 {
+  margin-top: -1px;
+  border-style: solid;
+  border-color: #000000;
+  border-width: 1px 0 0 0;
+  width: 333.01px;
+  height: 0px;
+  position: absolute;
+  left: 24px;
+  top: 173px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  transform-origin: 0 0;
+  transform: rotate(0deg) scale(1, 1);
+}
+.frame-7 .image-10 {
+  width: 214px;
+  height: 214px;
+  position: absolute;
+  left: 83px;
+  top: 436px;
+  object-fit: cover;
+}
