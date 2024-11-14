@@ -15,7 +15,7 @@ const center = {
   lng: 126.9780,
 };
 
-const googleMapsApiKey = "YOUR_GOOGLE_MAPS_API_KEY"; // Replace with your Google Maps API key
+const googleMapsApiKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
 export const RouteOption = () => {
   const navigate = useNavigate();
