@@ -22,6 +22,7 @@ export const RouteOption = () => {
   const [isRecording, setIsRecording] = useState(false);
   const [transcription, setTranscription] = useState("");
   const [locations, setLocations] = useState([]);
+  const [selectedLocation, setSelectedLocation] = useState(null);
 
   useEffect(() => {
     if (!('webkitSpeechRecognition' in window)) {
@@ -93,8 +94,8 @@ export const RouteOption = () => {
   };
 
   const handleNavigateToCheck = () => {
-    playTextToSpeech('선택한 경로를 확인하세요');
-    navigate("/check");
+    playTextToSpeech('도착지까지 원하는 경로를 선택하세요.');
+    navigate("/route");
   };
 
   const startRecording = () => {
@@ -103,6 +104,11 @@ export const RouteOption = () => {
 
   const stopRecording = () => {
     setIsRecording(false);
+  };
+
+  const handleSelectLocation = (location) => {
+    setSelectedLocation(location);
+    playTextToSpeech(`${location.name} 선택하였습니다.`);
   };
 
   return (
@@ -133,7 +139,7 @@ export const RouteOption = () => {
       <LoadScript googleMapsApiKey={googleMapsApiKey} libraries={['places']}>
         <GoogleMap
           mapContainerStyle={mapContainerStyle}
-          center={center}
+          center={selectedLocation ? selectedLocation.geometry.location : center}
           zoom={12}
         >
           {locations.map((location, index) => (
@@ -141,10 +147,20 @@ export const RouteOption = () => {
               key={index}
               position={location.geometry.location}
               title={location.name}
+              onClick={() => handleSelectLocation(location)}
             />
           ))}
         </GoogleMap>
       </LoadScript>
+
+      <div className="location-options">
+        {locations.map((location, index) => (
+          <div key={index} className="location-option">
+            <p>{location.name}</p>
+            <button onClick={() => handleSelectLocation(location)}>선택</button>
+          </div>
+        ))}
+      </div>
 
       <div className="depth-3-frame-2">
         <div className="depth-4-frame-0">

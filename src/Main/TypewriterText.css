@@ -1,0 +1,7 @@
+/* TypewriterText.css */
+.typewriter-text {
+    font-family: monospace;
+    white-space: pre-wrap; /* Preserves line breaks */
+    font-size: 1.2rem;
+    line-height: 1.5;
+}

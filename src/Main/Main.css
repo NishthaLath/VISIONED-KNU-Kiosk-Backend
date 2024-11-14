@@ -23,24 +23,24 @@
   position: static;
 }
 .main .depth-3-frame-2 {
-  background: #0d990a;
+  background: #ffffff;
   border-radius: 12px;
   border-style: solid;
-  border-color: #000000;
+  border-color: #ffffff;
   border-width: 1px;
-  padding: 0px 16px 0px 16px;
+  padding: 0;
   display: flex;
   flex-direction: row;
   gap: 0px;
   align-items: center;
   justify-content: center;
-  width: 343px;
+  width: 390px;
   height: 61px;
   min-width: 84px;
   max-width: 480px;
   position: absolute;
-  left: 27px;
-  top: 748px;
+  left: 0px;
+  top: 700px;
   overflow: hidden;
 }
 .main .depth-4-frame-0 {
@@ -52,6 +52,7 @@
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
+  width: 390px;
 }
 .main .div {
   text-align: center;
@@ -75,6 +76,7 @@
 .div-span2 {
   color: #f6fbff;
   font-family: "NotoSerif-DisplayBold", sans-serif;
+  font-weight: bold;
   font-size: 32px;
   line-height: 21px;
   font-weight: 400;
@@ -93,7 +95,7 @@
   font-family: "NotoSerif-DisplayBold", sans-serif;
   font-size: 40px;
   line-height: 45px;
-  font-weight: 400;
+  font-weight: bold;
   position: absolute;
   left: 27px;
   top: 136px;
@@ -155,6 +157,25 @@
   cursor: pointer;
 }
 
+.call-button {
+  width: 100%;
+  height: 100%;
+  font-size: 1em;
+  font-weight: bold;
+  border-radius: 8px;
+  border: none;
+  background-color: #a3cca2;
+  color: #000000;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.call-button:hover {
+  color: white;
+  background-color: #ff004d;
+  transform: scale(1.05);
+}
+
 .main .depth-4-frame-1 {
   display: flex;
   flex-direction: column;
@@ -206,5 +227,7 @@
   left: 16px;
   top: 162px;
   transform-origin: 0 0;
-  transform: rotate(-0.16deg) scale(1, 1);
+  transform: scale(1.05);
 }
+
+
