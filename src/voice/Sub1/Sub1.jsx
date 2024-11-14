@@ -50,8 +50,7 @@ export const Sub1 = ({ className, ...props }) => {
       const audio = new Audio(audioUrl);
       audio.play();
 
-      // Navigate to the route after the audio starts playing
-      navigate("/call"); // Update this path if "App.jsx" has a different route, e.g., "/app"
+      navigate("/call"); 
     } catch (error) {
       console.error('Error:', error);
     }
@@ -76,8 +75,7 @@ export const Sub1 = ({ className, ...props }) => {
       const audio = new Audio(audioUrl);
       audio.play();
 
-      // Navigate to the route after the audio starts playing
-      navigate("/route"); // Update this path if "App.jsx" has a different route, e.g., "/app"
+      navigate("/route_option"); 
     } catch (error) {
       console.error('Error:', error);
     }
