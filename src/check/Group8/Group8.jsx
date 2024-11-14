@@ -1,5 +1,6 @@
 import "./Group8.css";
 import { useNavigate } from "react-router-dom";
+import { playTextToSpeech } from "../../services/ttsService";
 
 export const Group8 = ({ className, ...props }) => {
   const navigate = useNavigate();
@@ -56,6 +57,7 @@ export const Group8 = ({ className, ...props }) => {
   };
 
   const handleNavigateToPrint = () => {
+    playTextToSpeech('약도가 출력되었습니다.하단의 출력창을 확인하세요.');
     navigate("/print"); // Navigates to the App.jsx in the "check" directory
   };
 

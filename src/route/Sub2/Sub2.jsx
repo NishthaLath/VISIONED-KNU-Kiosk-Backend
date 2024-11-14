@@ -1,6 +1,7 @@
+import React from "react";
 import "./Sub2.css";
 import { useNavigate } from "react-router-dom";
-
+import { playTextToSpeech } from "../../services/ttsService";
 
 export const Sub2 = ({ className, ...props }) => {
     const navigate = useNavigate();
@@ -57,7 +58,8 @@ export const Sub2 = ({ className, ...props }) => {
     };
 
   const handleNavigateToCheck = () => {
-    navigate("/check"); // Navigates to the App.jsx in the "check" directory
+    playTextToSpeech("선택한 경로를 확인하시고 약도 출력하기 버튼을 눌러주세요.", 1.0);
+    navigate("/check");
   };
 
     return (

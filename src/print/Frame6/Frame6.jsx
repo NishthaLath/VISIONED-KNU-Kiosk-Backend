@@ -1,14 +1,17 @@
 import "./Frame6.css";
 import { useNavigate } from "react-router-dom";
+import { playTextToSpeech } from "../../services/ttsService";
 
 export const Frame6 = ({ className, ...props }) => {
     const navigate = useNavigate();
 
     const handleGoBack = () => {
+        playTextToSpeech('이전 페이지로 돌아가겠습니다.');
         navigate(-1); // Navigate to the previous page
     };
 
     const handleNavigateToCall = () => {
+        playTextToSpeech('담당 정류장 안내원과 전화연결 중입니다. 잠시만 기다려주세요.');
         navigate("/call"); // Navigate to the App.jsx in the 'call' directory
     };
 
