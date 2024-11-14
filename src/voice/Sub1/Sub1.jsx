@@ -3,84 +3,25 @@ import { useNavigate } from "react-router-dom";
 import { useState} from "react";
 import CallButton from "../../share/CallButton.jsx";
 import BackButton from "../../share/BackButton.jsx";
+import { playTextToSpeech } from "../../services/ttsService";
 
 export const Sub1 = ({ className, ...props }) => {
   const navigate = useNavigate();
   const [text, setText] = useState("");
 
-  const handleGoBack = async () => {
-    try {
-      const response = await fetch('http://localhost:3001/synthesize', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ text: '이전 페이지로 돌아가겠습니다.' }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      const audioBlob = await response.blob();
-      const audioUrl = URL.createObjectURL(audioBlob);
-      const audio = new Audio(audioUrl);
-      audio.play();
-
-      navigate(-1);
-    } catch (error) {
-      console.error('Error:', error);
-    }
+  const handleGoBack = () => {
+    playTextToSpeech('이전 페이지로 돌아가겠습니다.');
+    navigate(-1);
   };
 
-  const handleNavigateToCall = async () => {
-    try {
-      const response = await fetch('http://localhost:3001/synthesize', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ text: '담당 정류장 안내원과 전화연결 중입니다. 잠시만 기다려주세요.' }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      const audioBlob = await response.blob();
-      const audioUrl = URL.createObjectURL(audioBlob);
-      const audio = new Audio(audioUrl);
-      audio.play();
-
-      navigate("/call"); 
-    } catch (error) {
-      console.error('Error:', error);
-    }
+  const handleNavigateToCall = () => {
+    playTextToSpeech('담당 정류장 안내원과 전화연결 중입니다. 잠시만 기다려주세요.');
+    navigate("/call"); 
   };
 
   const handleNavigateToRouteOption = async () => {
-    try {
-      const response = await fetch('http://localhost:3001/synthesize', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ text: '목적지를 말해주세요.' }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      const audioBlob = await response.blob();
-      const audioUrl = URL.createObjectURL(audioBlob);
-      const audio = new Audio(audioUrl);
-      audio.play();
-
-      navigate("/route_option"); 
-    } catch (error) {
-      console.error('Error:', error);
-    }
+    playTextToSpeech('목적지를 말해주세요.');
+    navigate("/route_option"); 
   };
 
   return (
