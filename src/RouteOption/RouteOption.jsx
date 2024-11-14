@@ -9,27 +9,24 @@ const mapContainerStyle = {
   height: "400px",
 };
 
-const center = {
-  lat: 37.5665,
-  lng: 126.9780,
-};
-
 export const RouteOption = () => {
   const navigate = useNavigate();
   const [isRecording, setIsRecording] = useState(false);
   const [transcription, setTranscription] = useState("");
   const [locations, setLocations] = useState([]);
-  const [selectedLocation, setSelectedLocation] = useState(null);
-  const [kakaoApiKey, setKakaoApiKey] = useState("");
 
   useEffect(() => {
     fetch('/api/kakao-api-key')
       .then(response => response.json())
       .then(data => {
-        setKakaoApiKey(data.apiKey);
         const script = document.createElement('script');
         script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${data.apiKey}&libraries=services,clusterer,drawing`;
         script.async = true;
+        script.onload = () => {
+          window.kakao.maps.load(() => {
+            console.log('Kakao Maps API loaded');
+          });
+        };
         document.head.appendChild(script);
       });
   }, []);
@@ -78,6 +75,11 @@ export const RouteOption = () => {
   }, [isRecording]);
 
   const searchPlaces = (query) => {
+    if (!window.kakao || !window.kakao.maps) {
+      console.error('Kakao Maps API is not loaded');
+      return;
+    }
+
     const ps = new window.kakao.maps.services.Places();
     ps.keywordSearch(query, (data, status) => {
       if (status === window.kakao.maps.services.Status.OK) {
@@ -97,7 +99,6 @@ export const RouteOption = () => {
   };
 
   const handleSelectLocation = (location) => {
-    setSelectedLocation(location);
     playTextToSpeech(`${location.place_name} 선택하였습니다.`);
     const locationData = {
       name: location.place_name,

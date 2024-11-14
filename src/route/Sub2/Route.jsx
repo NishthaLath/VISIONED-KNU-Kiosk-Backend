@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./Route.css";
-import { playTextToSpeech } from "../services/ttsService";
+import { playTextToSpeech } from "../../services/ttsService";
 
 const mapContainerStyle = {
   width: "100%",
@@ -18,16 +18,19 @@ export const Route = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [routeInfo, setRouteInfo] = useState([]);
-  const [kakaoApiKey, setKakaoApiKey] = useState("");
 
   useEffect(() => {
     fetch('/api/kakao-api-key')
       .then(response => response.json())
       .then(data => {
-        setKakaoApiKey(data.apiKey);
         const script = document.createElement('script');
         script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${data.apiKey}&libraries=services,clusterer,drawing`;
         script.async = true;
+        script.onload = () => {
+          window.kakao.maps.load(() => {
+            console.log('Kakao Maps API loaded');
+          });
+        };
         document.head.appendChild(script);
       });
   }, []);
@@ -39,7 +42,12 @@ export const Route = () => {
   }, [location.state]);
 
   const fetchRoute = (destination) => {
-    const map = new window.kakao.maps.Map(document.getElementById('map'), {
+    if (!window.kakao || !window.kakao.maps) {
+      console.error('Kakao Maps API is not loaded');
+      return;
+    }
+
+    new window.kakao.maps.Map(document.getElementById('map'), {
       center: new window.kakao.maps.LatLng(center.lat, center.lng),
       level: 3,
     });
