@@ -1,30 +1,46 @@
+/* eslint-disable no-unused-vars */
 /* src/route_option/RouteOption.jsx */
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
-import "./RouteOption.css";
+import CallButton from "../share/CallButton.jsx";
+import BackButton from "../share/BackButton.jsx";
 import { playTextToSpeech } from "../services/ttsService";
+import "./RouteOption.css";
 
-const mapContainerStyle = {
-  width: "100%",
-  height: "400px",
-};
-
-const center = {
-  lat: 37.5665,
-  lng: 126.9780,
-};
-
-const googleMapsApiKey = process.env.REACT_APP_GOOGLE_API_KEY;
-
-export const RouteOption = () => {
+export const RouteOption = ({ className, ...props }) => {
   const navigate = useNavigate();
+  const [text, setText] = useState("");
   const [isRecording, setIsRecording] = useState(false);
-  const [transcription, setTranscription] = useState("");
-  const [locations, setLocations] = useState([]);
-  const [selectedLocation, setSelectedLocation] = useState(null);
 
-  useEffect(() => {
+  const handleFresh = () => {
+    if (!text) {
+      playTextToSpeech('목적지 먼저 입력해주세요.');
+      return;
+    }
+    playTextToSpeech('버튼을 누르고, 목적지를 다시 말씀해주세요.');
+    navigate("/route_option");
+    setText("");
+  };
+
+  const handleGoBack = () => {
+    playTextToSpeech('이전 페이지로 돌아가겠습니다, 목적지 다시 부탁드립니다.');
+    navigate("/voice"); // Navigate to the previous page
+  };
+
+  const handleNavigateToCall = () => {
+    playTextToSpeech('담당 정류장 안내원과 전화연결 중입니다. 잠시만 기다려주세요.');
+    navigate("/call"); // Navigate to the call page
+  };
+
+  const handleNavigateToRoute = () => {
+    if (!text) {
+      playTextToSpeech('목적지 먼저 입력해주세요.');
+      return;
+    }
+    navigate("/route", { state: { destination: text } }); // Navigate to the route page with the destination
+  };
+
+  const startRecording = () => {
     if (!('webkitSpeechRecognition' in window)) {
       alert('Your browser does not support the Web Speech API. Please use a supported browser.');
       return;
@@ -41,9 +57,8 @@ export const RouteOption = () => {
 
     recognition.onresult = (event) => {
       const transcript = event.results[0][0].transcript;
-      setTranscription(transcript);
-      playTextToSpeech(`${transcript} 입력하였습니다.`);
-      searchPlaces(transcript);
+      setText(transcript);
+      playTextToSpeech(`${transcript} 입력하였습니다. 아래 도착지가 맞나요?`);
       setIsRecording(false);
     };
 
@@ -56,122 +71,44 @@ export const RouteOption = () => {
       setIsRecording(false);
     };
 
-    if (isRecording) {
-      recognition.start();
-    } else {
-      recognition.stop();
-    }
-
-    return () => {
-      recognition.stop();
-    };
-  }, [isRecording]);
-
-  const searchPlaces = (query) => {
-    const service = new window.google.maps.places.PlacesService(document.createElement('div'));
-    const request = {
-      query: query,
-      fields: ['name', 'geometry'],
-      locationBias: center,
-      rankBy: window.google.maps.places.RankBy.PROMINENCE,
-    };
-
-    service.textSearch(request, (results, status) => {
-      if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-        setLocations(results.slice(0, 3)); // Get up to 3 locations
-      }
-    });
-  };
-
-  const handleGoBack = () => {
-    playTextToSpeech('이전 페이지로 돌아가겠습니다.');
-    navigate(-1);
-  };
-
-  const handleNavigateToCall = () => {
-    playTextToSpeech('담당 정류장 안내원과 전화연결 중입니다. 잠시만 기다려주세요.');
-    navigate("/call");
-  };
-
-  const handleSelectLocation = (location) => {
-    setSelectedLocation(location);
-    playTextToSpeech(`${location.name} 선택하였습니다.`);
-    navigate("/route", { state: { location: { lat: location.geometry.location.lat(), lng: location.geometry.location.lng(), name: location.name } } });
-  };
-
-  const startRecording = () => {
-    setIsRecording(true);
-  };
-
-  const stopRecording = () => {
-    setIsRecording(false);
+    recognition.start();
   };
 
   return (
-    <div className="route-option">
-      <div className="depth-4-frame-52">
-        <div className="div2">듣고 있습니다......</div>
-      </div>
-
-      <div className="instructions depth-4-frame-11">
-        <p>이렇게 말씀 해보세요:</p>
-        <ul className="example-phrases">
-          <li>“대구역”</li>
-          <li>“이월드”</li>
-          <li>“신세계백화점”</li>
-        </ul>
-      </div>
-
-      <div className="user-input-placeholder depth-4-frame-6">
-        {transcription || "목적지"}
-      </div>
-
-      <div className="microphone-icon">
-        <img src="image-removebg-preview-19-20.png" alt="Microphone" onClick={startRecording} />
-      </div>
-
-      <button onClick={stopRecording}>Stop</button>
-
-      <LoadScript googleMapsApiKey={googleMapsApiKey} libraries={['places']}>
-        <GoogleMap
-          mapContainerStyle={mapContainerStyle}
-          center={selectedLocation ? selectedLocation.geometry.location : center}
-          zoom={12}
-        >
-          {locations.map((location, index) => (
-            <Marker
-              key={index}
-              position={location.geometry.location}
-              title={location.name}
-              onClick={() => handleSelectLocation(location)}
-            />
-          ))}
-        </GoogleMap>
-      </LoadScript>
-
-      <div className="location-options">
-        {locations.map((location, index) => (
-          <div key={index} className="location-option">
-            <p>{location.name}</p>
-            <button onClick={() => handleSelectLocation(location)}>선택</button>
-          </div>
-        ))}
-      </div>
-
-      <div className="depth-3-frame-2">
-        <div className="depth-4-frame-0">
-          <button className="help-request-button" onClick={handleNavigateToCall}>
-            안내원 도움 요청하기
-          </button>
+    <div className={"div " + className}>
+      <BackButton
+          onClick={handleGoBack} label="뒤로가기"/>
+      <div className="rectangle-9"></div>
+      <div className="line-2"></div>
+      <div className="line-9"></div>
+      <img
+          className="image-removebg-preview-19-3"
+          src="image-removebg-preview-19-20.png"
+          alt="Microphone"
+          onClick={startRecording}
+          style={{ cursor: "pointer" }}
+        />
+        <div className="depth-3-frame-2">
+              <span>
+                  <CallButton
+                      onClick={handleNavigateToCall} label="안내원 도움 요청"/>
+              </span>{" "}
         </div>
+        <div className="div3">도착지를 듣고있어요.</div>
+        <div className="div4">아래 도착지가 맞나요?</div>
+        <div className="div5">{text || "목적지"}</div>
+        <div className="ellipse-1"></div>
+        <div className="ellipse-2"></div>
+        <div className="ellipse-4"></div>
+        <div className="ellipse-6"></div>
+        <div className="ellipse-7"></div>
+        <div className="ellipse-5"></div>
+        <div className="ellipse-3"></div>
+        <div className="rectangle-10"></div>
+        <div className="rectangle-11"></div>
+        <button className="div6" onClick={handleNavigateToRoute} style={{ cursor: "pointer" }}>예</button>
+        <button className="div7" onClick={handleFresh} style={{ cursor: "pointer" }}>아니오</button>
       </div>
-
-      <div className="depth-4-frame-53">
-        <button className="back-button" onClick={handleGoBack}>
-          뒤로가기
-        </button>
-      </div>
-    </div>
   );
 };
 
