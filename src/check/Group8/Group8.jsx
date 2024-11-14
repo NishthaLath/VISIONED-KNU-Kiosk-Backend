@@ -4,12 +4,55 @@ import { useNavigate } from "react-router-dom";
 export const Group8 = ({ className, ...props }) => {
   const navigate = useNavigate();
 
-  const handleGoBack = () => {
-    navigate(-1); // Navigate to the previous page
+  const handleGoBack = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/synthesize', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ text: '이전 페이지로 돌아가겠습니다.' }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const audioBlob = await response.blob();
+      const audioUrl = URL.createObjectURL(audioBlob);
+      const audio = new Audio(audioUrl);
+      audio.play();
+
+      navigate(-1);
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
-  const handleNavigateToCall = () => {
-    navigate("/call"); // Navigate to the App.jsx in the 'call' directory
+  const handleNavigateToCall = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/synthesize', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ text: '담당 정류장 안내원과 전화연결 중입니다. 잠시만 기다려주세요.' }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const audioBlob = await response.blob();
+      const audioUrl = URL.createObjectURL(audioBlob);
+      const audio = new Audio(audioUrl);
+      audio.play();
+
+      // Navigate to the route after the audio starts playing
+      navigate("/call"); // Update this path if "App.jsx" has a different route, e.g., "/app"
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   const handleNavigateToPrint = () => {
