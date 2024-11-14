@@ -1,6 +1,7 @@
 /* src/route_option/RouteOption.jsx */
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import "./RouteOption.css";
 import { playTextToSpeech } from "../services/ttsService";
 
@@ -9,27 +10,19 @@ const mapContainerStyle = {
   height: "400px",
 };
 
+const center = {
+  lat: 37.5665,
+  lng: 126.9780,
+};
+
+const googleMapsApiKey = process.env.REACT_APP_GOOGLE_API_KEY;
+
 export const RouteOption = () => {
   const navigate = useNavigate();
   const [isRecording, setIsRecording] = useState(false);
   const [transcription, setTranscription] = useState("");
   const [locations, setLocations] = useState([]);
-
-  useEffect(() => {
-    fetch('/api/kakao-api-key')
-      .then(response => response.json())
-      .then(data => {
-        const script = document.createElement('script');
-        script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${data.apiKey}&libraries=services,clusterer,drawing`;
-        script.async = true;
-        script.onload = () => {
-          window.kakao.maps.load(() => {
-            console.log('Kakao Maps API loaded');
-          });
-        };
-        document.head.appendChild(script);
-      });
-  }, []);
+  const [selectedLocation, setSelectedLocation] = useState(null);
 
   useEffect(() => {
     if (!('webkitSpeechRecognition' in window)) {
@@ -75,15 +68,17 @@ export const RouteOption = () => {
   }, [isRecording]);
 
   const searchPlaces = (query) => {
-    if (!window.kakao || !window.kakao.maps) {
-      console.error('Kakao Maps API is not loaded');
-      return;
-    }
+    const service = new window.google.maps.places.PlacesService(document.createElement('div'));
+    const request = {
+      query: query,
+      fields: ['name', 'geometry'],
+      locationBias: center,
+      rankBy: window.google.maps.places.RankBy.PROMINENCE,
+    };
 
-    const ps = new window.kakao.maps.services.Places();
-    ps.keywordSearch(query, (data, status) => {
-      if (status === window.kakao.maps.services.Status.OK) {
-        setLocations(data.slice(0, 3)); // Get up to 3 locations
+    service.textSearch(request, (results, status) => {
+      if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+        setLocations(results.slice(0, 3)); // Get up to 3 locations
       }
     });
   };
@@ -99,13 +94,9 @@ export const RouteOption = () => {
   };
 
   const handleSelectLocation = (location) => {
-    playTextToSpeech(`${location.place_name} 선택하였습니다.`);
-    const locationData = {
-      name: location.place_name,
-      lat: location.y,
-      lng: location.x,
-    };
-    navigate("/route", { state: { location: locationData } });
+    setSelectedLocation(location);
+    playTextToSpeech(`${location.name} 선택하였습니다.`);
+    navigate("/route", { state: { location: { lat: location.geometry.location.lat(), lng: location.geometry.location.lng(), name: location.name } } });
   };
 
   const startRecording = () => {
@@ -141,12 +132,27 @@ export const RouteOption = () => {
 
       <button onClick={stopRecording}>Stop</button>
 
-      <div id="map" style={mapContainerStyle}></div>
+      <LoadScript googleMapsApiKey={googleMapsApiKey} libraries={['places']}>
+        <GoogleMap
+          mapContainerStyle={mapContainerStyle}
+          center={selectedLocation ? selectedLocation.geometry.location : center}
+          zoom={12}
+        >
+          {locations.map((location, index) => (
+            <Marker
+              key={index}
+              position={location.geometry.location}
+              title={location.name}
+              onClick={() => handleSelectLocation(location)}
+            />
+          ))}
+        </GoogleMap>
+      </LoadScript>
 
       <div className="location-options">
         {locations.map((location, index) => (
           <div key={index} className="location-option">
-            <p>{location.place_name}</p>
+            <p>{location.name}</p>
             <button onClick={() => handleSelectLocation(location)}>선택</button>
           </div>
         ))}

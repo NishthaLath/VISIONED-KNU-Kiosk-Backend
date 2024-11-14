@@ -96,14 +96,17 @@
   color: #121417;
   text-align: left;
   font-family: "NotoSerif-DisplayBold", sans-serif;
-  font-size: 32px;
-  line-height: 21px;
-  font-weight: 400;
-  position: relative;
-  align-self: stretch;
-  height: 209px;
-  text-overflow: ellipsis;
-  overflow: hidden;
+  font-size: 40px;
+  line-height: 55px;
+  font-weight: bold;
+  position: absolute;
+  left: 27px;
+  top: 150px;
+  width: 468px;
+  height: 243px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 .frame-7 .line-3 {
   margin-top: -1px;

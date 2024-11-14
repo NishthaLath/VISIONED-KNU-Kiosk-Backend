@@ -16,6 +16,7 @@
   width: 426px;
   height: 815px;
   position: static;
+  overflow: visible;
 }
 .sub-1 .group-2 {
   width: 426px;
@@ -52,7 +53,7 @@
   border-radius: 10px;
   width: 331px;
   height: 72px;
-  position: absolute;
+  position: relative;
   left: 29px;
   top: 168px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
@@ -78,7 +79,7 @@
   width: 326px;
   height: 57px;
   text-overflow: ellipsis;
-  overflow: hidden;
+  overflow: visible;
 }
 .div-span {
   color: #121417;
@@ -194,17 +195,13 @@
   line-height: 21px;
   font-weight: 400;
   position: relative;
-  width: 326px;
-  height: 140px;
+  width: 331px;
+  height: 71px;
   text-overflow: ellipsis;
   overflow: hidden;
 }
 .sub-1 .depth-3-frame-2 {
-  background: #0d990a;
-  border-radius: 12px;
-  border-style: solid;
-  border-color: #000000;
-  border-width: 1px;
+  background: transparent;
   padding: 0px 16px 0px 16px;
   display: flex;
   flex-direction: row;
@@ -216,9 +213,9 @@
   min-width: 84px;
   max-width: 480px;
   position: absolute;
-  left: 27px;
+  left: 19px;
   top: 748px;
-  overflow: hidden;
+  overflow: visible;
 }
 .sub-1 .depth-4-frame-0 {
   display: flex;
@@ -246,24 +243,57 @@
 }
 
 .depth-4-frame-4 {
-  padding: 0px;               /* Adds space inside the frame */
-  border: 1px solid #ddd;      /* Light gray border around the frame */
-  border-radius: 8px;          /* Rounds the corners */
-  background-color: #f9f9f9;   /* Light background color */
-  box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1); /* Subtle shadow for depth */
-  margin-top: 0px;            /* Adds space above the frame */
-  font-size: 0.1em;              /* Sets a base font size */
-  color: #333;                 /* Dark text color for readability */
-  width: 70%;                 /* Full width within its container */
+  width: 100%; /* Match the width of rectangle4 */
+  height: 100%; /* Match the height of rectangle4 */
+  position: absolute; /* Allows precise alignment */
+  top: 0;
+  left: 0;
+  /* Add any additional styles */
 }
 
 .depth-4-frame-4 input,
 .depth-4-frame-4[contenteditable="true"] {
   outline: none;               /* Removes the default focus outline */
-  width: 100%;                 /* Ensures the input or content fills the frame */
-  font-size: 0.5em;              /* Matches the font size of the frame */
+  font-size: 0.5em;
   color: inherit;              /* Inherits the frame’s text color */
   background: transparent;     /* Transparent background to blend with frame */
   border: none;                /* Removes inner border (if input) */
   padding: 5px;                /* Adds padding inside input or content-editable div */
+}
+
+.line-2 {
+  margin-top: -1px;
+  border-style: solid;
+  border-color: #000000;
+  border-width: 1px 0 0 0;
+  width: 333.01px;
+  height: 0px;
+  position: absolute;
+  left: 28px;
+  top: 739px;
+  box-shadow: none;
+  transform-origin: 0 0;
+  transform: rotate(0deg) scale(1, 1);
+}
+
+.record-button {
+  width: 331px;           /* Take the full width of the container */
+  height: 100%;          /* Take the full height of the container */
+  font-size: 30px;      /* Adjust to fit text within the container */
+  font-weight: bold;
+  border-radius: 8px;
+  border: none;
+  background-color: #a3cca2; /* Button background */
+  color: #000000;            /* Text color */
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+  overflow: visible;
+  vertical-align: top;
+}
+
+.record-button:hover {
+  color: white;
+  background-color: #ff004d;
+  transform: scale(1.05);
+  overflow: visible;
 }

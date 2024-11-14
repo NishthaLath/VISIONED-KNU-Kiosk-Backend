@@ -1,6 +1,7 @@
 /* src/route/Route.jsx */
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { GoogleMap, LoadScript, DirectionsRenderer } from "@react-google-maps/api";
 import "./Route.css";
 import { playTextToSpeech } from "../../services/ttsService";
 
@@ -10,30 +11,17 @@ const mapContainerStyle = {
 };
 
 const center = {
-  lat: 37.5665,
-  lng: 126.9780,
+  lat: 35.8886, // Latitude for 경북대학교정문앞
+  lng: 128.6105, // Longitude for 경북대학교정문앞
 };
+
+const googleMapsApiKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
 export const Route = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [directions, setDirections] = useState(null);
   const [routeInfo, setRouteInfo] = useState([]);
-
-  useEffect(() => {
-    fetch('/api/kakao-api-key')
-      .then(response => response.json())
-      .then(data => {
-        const script = document.createElement('script');
-        script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${data.apiKey}&libraries=services,clusterer,drawing`;
-        script.async = true;
-        script.onload = () => {
-          window.kakao.maps.load(() => {
-            console.log('Kakao Maps API loaded');
-          });
-        };
-        document.head.appendChild(script);
-      });
-  }, []);
 
   useEffect(() => {
     if (location.state && location.state.location) {
@@ -42,26 +30,20 @@ export const Route = () => {
   }, [location.state]);
 
   const fetchRoute = (destination) => {
-    if (!window.kakao || !window.kakao.maps) {
-      console.error('Kakao Maps API is not loaded');
-      return;
-    }
-
-    new window.kakao.maps.Map(document.getElementById('map'), {
-      center: new window.kakao.maps.LatLng(center.lat, center.lng),
-      level: 3,
-    });
-
-    const directionsService = new window.kakao.maps.services.Directions();
+    const directionsService = new window.google.maps.DirectionsService();
     const request = {
-      origin: new window.kakao.maps.LatLng(center.lat, center.lng),
-      destination: new window.kakao.maps.LatLng(destination.lat, destination.lng),
-      travelMode: window.kakao.maps.services.TravelMode.TRANSIT,
+      origin: center,
+      destination: { lat: destination.lat, lng: destination.lng },
+      travelMode: window.google.maps.TravelMode.TRANSIT,
+      transitOptions: {
+        modes: ['BUS', 'SUBWAY'],
+      },
       provideRouteAlternatives: true,
     };
 
     directionsService.route(request, (result, status) => {
-      if (status === window.kakao.maps.services.Status.OK) {
+      if (status === window.google.maps.DirectionsStatus.OK) {
+        setDirections(result);
         setRouteInfo(result.routes.slice(0, 3).map(route => ({
           duration: route.legs[0].duration.text,
           distance: route.legs[0].distance.text,
@@ -96,7 +78,15 @@ export const Route = () => {
         <div className="div2">경로 정보</div>
       </div>
 
-      <div id="map" style={mapContainerStyle}></div>
+      <LoadScript googleMapsApiKey={googleMapsApiKey}>
+        <GoogleMap
+          mapContainerStyle={mapContainerStyle}
+          center={center}
+          zoom={12}
+        >
+          {directions && <DirectionsRenderer directions={directions} />}
+        </GoogleMap>
+      </LoadScript>
 
       <div className="route-info">
         {routeInfo.map((route, index) => (

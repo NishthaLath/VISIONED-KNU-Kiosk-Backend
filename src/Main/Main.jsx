@@ -1,7 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { playTextToSpeech } from "../services/ttsService";
+import CallButton from "../share/CallButton.jsx";
 import "./Main.css";
+import { playTextToSpeech } from "../services/ttsService";
+
 
 export const Main = ({ className, ...props }) => {
     const navigate = useNavigate();
@@ -11,45 +13,36 @@ export const Main = ({ className, ...props }) => {
         navigate("/voice");
     };
 
+    const handleNavigateToCall = () => {
+        playTextToSpeech("안내원 도움 요청하기 버튼을 눌렀습니다. 안내원이 도움을 드리러 오겠습니다.", 1.0);
+        navigate("/call");
+    }
+
     return (
         <div className={"main " + className}>
-            <div className="group-4">
-                <div className="group-3">
-                    <div className="depth-3-frame-2">
-                        <div className="depth-4-frame-0">
-                            <div className="div">
-                                <span>
-                                    <span className="div-span">
-                                        <br />
-                                    </span>
-                                    <span className="div-span2">안내원 도움 요청하기</span>
-                                </span>{" "}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <img
                 className="image-removebg-preview-19-2"
                 src="image-removebg-preview-19-20.png"
-                alt=""
+                alt = ""
             />
             <div className="div2">
                 도착지 약도
-                <br />
+                <br/>
                 출력 서비스를
-                <br />
+                <br/>
                 시작하겠습니다.{" "}
             </div>
-
             <div className="depth-3-frame-1">
-                <br />
+                <br/>
                 <button onClick={handleNavigate} className="navigate-button">
                     시작하기
                 </button>
-                <div className="depth-4-frame-12"></div>
+            </div>
+            <div className="depth-3-frame-2">
+                <CallButton onClick={handleNavigateToCall} label="안내원 도움 요청"/>
             </div>
             <div className="line-5"></div>
+            <div className="line-2"></div>
         </div>
     );
 };

@@ -1,0 +1,20 @@
+.back-button {
+    background: #a3cca2;
+    border-radius: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    position: absolute;
+    left: 33px;
+    top: 59px;
+    box-shadow: none;
+    width: 188px;
+    height: 82px;
+}
+
+.back-button:hover {
+    color: white;
+    background-color: #ff004d;
+    transform: scale(1.05);
+    overflow: visible;
+}
+
