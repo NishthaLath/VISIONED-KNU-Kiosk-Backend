@@ -1,33 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { playTextToSpeech } from "../../services/ttsService";
 import "./Frame7.css";
 
 export const Frame7 = ({ className, ...props }) => {
     const navigate = useNavigate();
 
-    const handleNavigateToMain = async () => {
-      try {
-        const response = await fetch('http://localhost:3001/synthesize', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ text: '메인 페이지로 돌아가겠습니다.' }),
-        });
-  
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-  
-        const audioBlob = await response.blob();
-        const audioUrl = URL.createObjectURL(audioBlob);
-        const audio = new Audio(audioUrl);
-        audio.play();
-  
-        navigate("/"); 
-      } catch (error) {
-        console.error('Error:', error);
-      }
+    const handleNavigateToMain = () => {
+        playTextToSpeech("'메인 페이지로 돌아가겠습니다.'");
+        navigate("/");
     };
 
     return (

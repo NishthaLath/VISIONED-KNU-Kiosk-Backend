@@ -1,33 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { playTextToSpeech } from "../services/ttsService";
 import "./Main.css";
 
 export const Main = ({ className, ...props }) => {
     const navigate = useNavigate();
 
-    const handleNavigate = async () => {
-        try {
-            const response = await fetch('http://localhost:3001/synthesize', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ text: '안녕하세요, 도착지 약도 출력 서비스 입니다. 마이크 버튼을 누른 후 목적지를 말씀해 주시거나, 검색창에 입력해 주세요. 안내원의 도움이 필요하신 경우, 아래에 있는 안내원 도움 요청하기 버튼을 눌러주세요.' }),
-            });
-
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-
-            const audioBlob = await response.blob();
-            const audioUrl = URL.createObjectURL(audioBlob);
-            const audio = new Audio(audioUrl);
-            audio.play();
-
-            navigate("/voice");
-        } catch (error) {
-            console.error('Error:', error);
-        }
+    const handleNavigate = () => {
+        playTextToSpeech("안녕하세요, 도착지 약도 출력 서비스 입니다. 마이크 버튼을 누른 후 목적지를 말씀해 주시거나, 검색창에 입력해 주세요. 안내원의 도움이 필요하신 경우, 아래에 있는 안내원 도움 요청하기 버튼을 눌러주세요.", 1.0);
+        navigate("/voice");
     };
 
     return (
