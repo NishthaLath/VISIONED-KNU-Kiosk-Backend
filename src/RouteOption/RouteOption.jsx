@@ -1,7 +1,6 @@
 /* src/route_option/RouteOption.jsx */
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import "./RouteOption.css";
 import { playTextToSpeech } from "../services/ttsService";
 
@@ -15,14 +14,25 @@ const center = {
   lng: 126.9780,
 };
 
-const googleMapsApiKey = process.env.REACT_APP_GOOGLE_API_KEY;
-
 export const RouteOption = () => {
   const navigate = useNavigate();
   const [isRecording, setIsRecording] = useState(false);
   const [transcription, setTranscription] = useState("");
   const [locations, setLocations] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState(null);
+  const [kakaoApiKey, setKakaoApiKey] = useState("");
+
+  useEffect(() => {
+    fetch('/api/kakao-api-key')
+      .then(response => response.json())
+      .then(data => {
+        setKakaoApiKey(data.apiKey);
+        const script = document.createElement('script');
+        script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${data.apiKey}&libraries=services,clusterer,drawing`;
+        script.async = true;
+        document.head.appendChild(script);
+      });
+  }, []);
 
   useEffect(() => {
     if (!('webkitSpeechRecognition' in window)) {
@@ -68,17 +78,10 @@ export const RouteOption = () => {
   }, [isRecording]);
 
   const searchPlaces = (query) => {
-    const service = new window.google.maps.places.PlacesService(document.createElement('div'));
-    const request = {
-      query: query,
-      fields: ['name', 'geometry'],
-      locationBias: center,
-      rankBy: window.google.maps.places.RankBy.PROMINENCE,
-    };
-
-    service.textSearch(request, (results, status) => {
-      if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-        setLocations(results.slice(0, 3)); // Get up to 3 locations
+    const ps = new window.kakao.maps.services.Places();
+    ps.keywordSearch(query, (data, status) => {
+      if (status === window.kakao.maps.services.Status.OK) {
+        setLocations(data.slice(0, 3)); // Get up to 3 locations
       }
     });
   };
@@ -93,9 +96,15 @@ export const RouteOption = () => {
     navigate("/call");
   };
 
-  const handleNavigateToCheck = () => {
-    playTextToSpeech('도착지까지 원하는 경로를 선택하세요.');
-    navigate("/route");
+  const handleSelectLocation = (location) => {
+    setSelectedLocation(location);
+    playTextToSpeech(`${location.place_name} 선택하였습니다.`);
+    const locationData = {
+      name: location.place_name,
+      lat: location.y,
+      lng: location.x,
+    };
+    navigate("/route", { state: { location: locationData } });
   };
 
   const startRecording = () => {
@@ -104,11 +113,6 @@ export const RouteOption = () => {
 
   const stopRecording = () => {
     setIsRecording(false);
-  };
-
-  const handleSelectLocation = (location) => {
-    setSelectedLocation(location);
-    playTextToSpeech(`${location.name} 선택하였습니다.`);
   };
 
   return (
@@ -136,27 +140,12 @@ export const RouteOption = () => {
 
       <button onClick={stopRecording}>Stop</button>
 
-      <LoadScript googleMapsApiKey={googleMapsApiKey} libraries={['places']}>
-        <GoogleMap
-          mapContainerStyle={mapContainerStyle}
-          center={selectedLocation ? selectedLocation.geometry.location : center}
-          zoom={12}
-        >
-          {locations.map((location, index) => (
-            <Marker
-              key={index}
-              position={location.geometry.location}
-              title={location.name}
-              onClick={() => handleSelectLocation(location)}
-            />
-          ))}
-        </GoogleMap>
-      </LoadScript>
+      <div id="map" style={mapContainerStyle}></div>
 
       <div className="location-options">
         {locations.map((location, index) => (
           <div key={index} className="location-option">
-            <p>{location.name}</p>
+            <p>{location.place_name}</p>
             <button onClick={() => handleSelectLocation(location)}>선택</button>
           </div>
         ))}
@@ -173,12 +162,6 @@ export const RouteOption = () => {
       <div className="depth-4-frame-53">
         <button className="back-button" onClick={handleGoBack}>
           뒤로가기
-        </button>
-      </div>
-
-      <div className="depth-4-frame-54">
-        <button className="next-button" onClick={handleNavigateToCheck}>
-          선택한 경로를 확인하세요.
         </button>
       </div>
     </div>

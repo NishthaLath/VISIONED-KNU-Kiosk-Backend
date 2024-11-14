@@ -3,6 +3,7 @@ const textToSpeech = require('@google-cloud/text-to-speech');
 const speech = require('@google-cloud/speech');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+require('dotenv').config();
 
 const app = express();
 const port = 3001;
@@ -19,6 +20,10 @@ const sttClient = new speech.SpeechClient({
 app.use(cors());
 app.use(bodyParser.json({ limit: '100mb' })); // Increase the limit to 100MB
 app.use(bodyParser.urlencoded({ limit: '100mb', extended: true }));
+
+app.get('/api/kakao-api-key', (req, res) => {
+  res.json({ apiKey: process.env.REACT_APP_KAKAO_API_KEY });
+});
 
 app.post('/synthesize', async (req, res) => {
   const text = req.body.text;

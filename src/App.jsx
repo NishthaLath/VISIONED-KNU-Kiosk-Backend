@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Main from './Main/Main';
 import Voice from './voice/Sub1/Sub1';
 import { RouteOption } from "./RouteOption/RouteOption";
-import Sub2Route from './route/Sub2/Sub2';
+import Sub2Route from './route/Sub2/Route';
 import Check from './check/Group8/Group8';
 import Print from './print/Frame6/Frame6';
 import Call from './call/Frame7/Frame7';
