@@ -25,7 +25,8 @@ export const Main = ({ className, ...props }) => {
         <div className={"main " + className}>
             <img
                 className="deagu-logo"
-                src="deagu-logo.png" alt = "대구로고"
+                src="deagu-logo.png"
+                alt="대구광역시 로고"
             />
             <div className="show-big-text">
                 도착지 약도
