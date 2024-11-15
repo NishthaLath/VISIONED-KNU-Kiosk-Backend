@@ -11,15 +11,8 @@ import { playTextToSpeech } from "../services/ttsService";
 export const Main = ({ className, ...props }) => {
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const message = "안녕하세요, 길 안내 및 택시 호출 서비스 입니다. 안내원의 도움이 필요하신 경우, 아래에 있는 안내원 도움 요청하기 버튼을 눌러주세요";
-        setTimeout(() => {
-            playTextToSpeech(message, 1.0);
-        }); 
-    }, []);
-
     const handleNavigate = () => {
-        playTextToSpeech("서비스를 시작합니다. 완하는 이동수단을 선택해 주세요.", 1.0);
+        playTextToSpeech("안녕하세요, 서비스를 시작합니다. 안내원의 도움이 필요하신 경우, 아래에 있는 안내원 도움 요청하기 버튼을 눌러주세요. 완하는 이동수단을 선택해 주세요.", 1.0);
         navigate("/choose");
     };
 
