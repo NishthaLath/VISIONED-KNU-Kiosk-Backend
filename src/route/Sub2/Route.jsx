@@ -2,7 +2,8 @@
 /* src/route/Route.jsx */
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { GoogleMap, LoadScript, DirectionsRenderer } from "@react-google-maps/api";
+import { GoogleMap, LoadScript, DirectionsService, DirectionsRenderer } from "@react-google-maps/api";
+import axios from 'axios';
 import "./Route.css";
 import { playTextToSpeech } from "../../services/ttsService";
 import CallButton from "../../share/CallButton.jsx";
@@ -18,57 +19,37 @@ const center = {
   lng: 128.6105, // Longitude for 경북대학교정문앞
 };
 
-const googleMapsApiKey = process.env.REACT_APP_GOOGLE_API_KEY;
+const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
-export const Route = () => {
+const Route = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [directions, setDirections] = useState(null);
-  const [routeInfo, setRouteInfo] = useState([]);
+  const [routes, setRoutes] = useState([]);
+  const [selectedRoute, setSelectedRoute] = useState(null);
   const [destination, setDestination] = useState("");
 
   useEffect(() => {
     if (location.state && location.state.destination) {
       setDestination(location.state.destination);
+      fetchRoutes(center, location.state.destination);
     }
   }, [location.state]);
 
-  const fetchRoute = () => {
-    const directionsService = new window.google.maps.DirectionsService();
-    const request = {
-      origin: center,
-      destination: destination,
-      travelMode: window.google.maps.TravelMode.TRANSIT,
-      transitOptions: {
-        modes: ['BUS', 'SUBWAY'],
-      },
-      provideRouteAlternatives: true,
-    };
+  const fetchRoutes = async (origin, destination) => {
+    try {
+      const response = await axios.post('http://localhost:3001/get-routes', {
+        origin,
+        destination,
+      });
+      setRoutes(response.data.routes);
+    } catch (error) {
+      console.error('Error fetching routes:', error);
+    }
+  };
 
-    directionsService.route(request, (result, status) => {
-      if (status === window.google.maps.DirectionsStatus.OK) {
-        setDirections(result);
-        setRouteInfo(result.routes.slice(0, 2).map(route => ({
-          duration: route.legs[0].duration.text,
-          distance: route.legs[0].distance.text,
-          steps: route.legs[0].steps.map(step => ({
-            travelMode: step.travel_mode,
-            instructions: step.instructions,
-            duration: step.duration.text,
-            distance: step.distance.text,
-            transitDetails: step.transit ? {
-              line: step.transit.line.short_name,
-              vehicle: step.transit.line.vehicle.type,
-              numStops: step.transit.num_stops,
-              departureStop: step.transit.departure_stop.name,
-              arrivalStop: step.transit.arrival_stop.name,
-            } : null,
-          })),
-        })));
-      } else {
-        console.error(`error fetching directions ${result}`);
-      }
-    });
+  const handleRouteClick = (routeIndex) => {
+    setSelectedRoute(routes[routeIndex]);
+    playTextToSpeech('경로를 선택하였습니다.');
   };
 
   const handleGoBack = () => {
@@ -100,30 +81,26 @@ export const Route = () => {
       <div className="depth-4-frame-6">
         <div className="div">
           <br />
-          <button className="destination-button" onClick={fetchRoute} style={{ cursor: "pointer" }}>
+          <button className="destination-button" onClick={() => fetchRoutes(center, destination)} style={{ cursor: "pointer" }}>
             {destination}
           </button>
         </div>
       </div>
       <div className="div2">원하는 경로를 선택하세요.</div>
       <div className="line-4"></div>
-      {routeInfo.map((route, index) => (
-        <div key={index} className={`depth-4-frame-${index + 12}`} onClick={handleNavigateToCheck} style={{ cursor: "pointer" }}>
-          <div className={`_1500-${index}-5`}>
-            <span>
-              <span className={`_1500-${index}-5-span`}>
-                <br />
-              </span>
-              <span className={`_1500-${index}-5-span2`}>
-                비용: 1500원 | 환승 {route.steps.filter(step => step.transitDetails).length - 1}회 | 도보 {route.steps.filter(step => step.travelMode === 'WALKING').reduce((acc, step) => acc + parseInt(step.duration), 0)}분
-                <br />
-              </span>
-            </span>{" "}
+      {routes.map((route, index) => (
+        <div key={index} className={`rectangle-${index + 7}`} onClick={() => handleRouteClick(index)} style={{ cursor: "pointer" }}>
+          <div className="div">
+            <span className="_1500-0-5-span">{route.summary}</span>
+            <br />
+            <span className="_1500-0-5-span2">
+              Distance: {route.distance}, Duration: {route.duration}
+            </span>
           </div>
         </div>
       ))}
       <div className="_65">(65세 이상 무료)</div>
-      {routeInfo.map((route, index) => (
+      {routes.map((route, index) => (
         <div key={index} className={`div${index + 3}`}>{route.steps.find(step => step.transitDetails)?.arrivalStop}</div>
       ))}
       <img className="image-removebg-preview-23-1" src="image-removebg-preview-23-10.png" alt="Bus" />
@@ -137,6 +114,17 @@ export const Route = () => {
           </span>{" "}
         </div>
       </div>
+      {selectedRoute && (
+        <LoadScript googleMapsApiKey={API_KEY}>
+          <GoogleMap
+            mapContainerStyle={mapContainerStyle}
+            center={center}
+            zoom={14}
+          >
+            <DirectionsRenderer directions={{ routes: [selectedRoute] }} />
+          </GoogleMap>
+        </LoadScript>
+      )}
     </div>
   );
 };

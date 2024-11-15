@@ -3,6 +3,7 @@ const textToSpeech = require('@google-cloud/text-to-speech');
 const speech = require('@google-cloud/speech');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const axios = require('axios');
 
 const app = express();
 const port = 3001;
@@ -79,6 +80,38 @@ app.post('/recognize', async (req, res) => {
   } catch (error) {
     console.error('ERROR:', error);
     res.status(500).send('Error recognizing speech');
+  }
+});
+
+app.post('/get-routes', async (req, res) => {
+  const { origin, destination } = req.body;
+  const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
+
+  if (!origin || !destination) {
+    return res.status(400).send('Origin and destination are required');
+  }
+
+  const url = `https://maps.googleapis.com/maps/api/directions/json?origin=${encodeURIComponent(
+    origin
+  )}&destination=${encodeURIComponent(
+    destination
+  )}&alternatives=true&key=${API_KEY}`;
+
+  try {
+    const response = await axios.get(url);
+    const routes = response.data.routes.map((route) => {
+      const legs = route.legs[0];
+      return {
+        summary: route.summary,
+        distance: legs.distance.text,
+        duration: legs.duration.text,
+        steps: legs.steps.map((step) => step.html_instructions),
+      };
+    });
+    res.send({ routes });
+  } catch (error) {
+    console.error('Error fetching routes:', error);
+    res.status(500).send('Error fetching route information');
   }
 });
 

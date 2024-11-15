@@ -9,29 +9,9 @@ export const Group8 = ({ className, ...props }) => {
   const navigate = useNavigate();
 
   const handleGoBack = async () => {
-    try {
-      const response = await fetch('http://localhost:3001/synthesize', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ text: '이전 페이지로 돌아가겠습니다.' }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      const audioBlob = await response.blob();
-      const audioUrl = URL.createObjectURL(audioBlob);
-      const audio = new Audio(audioUrl);
-      audio.play();
-
+      playTextToSpeech('이전 페이지로 돌아가겠습니다.');
       navigate(-1);
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
+    };
 
   const handleNavigateToCall = async () => {
     try {
