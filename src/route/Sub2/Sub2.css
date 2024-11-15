@@ -1,16 +1,17 @@
-/* src/route/Route.css */
 .sub-2,
 .sub-2 * {
   box-sizing: border-box;
 }
-
 .sub-2 {
   background: #ffffff;
   height: 844px;
   position: relative;
   overflow: hidden;
 }
-
+.sub-2 .group-6 {
+  position: absolute;
+  inset: 0;
+}
 .sub-2 .rectangle-7 {
   background: #a3cca2;
   border-radius: 10px;
@@ -21,7 +22,6 @@
   top: 374px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
-
 .sub-2 .rectangle-8 {
   background: #a3cca2;
   border-radius: 10px;
@@ -33,17 +33,9 @@
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-.sub-2 .image-removebg-preview-19-2 {
-  width: 102px;
-  height: 103px;
-  position: absolute;
-  left: 288px;
-  top: -6px;
-  object-fit: cover;
-}
-
 .sub-2 .rectangle-5 {
   background: rgba(25, 0, 115, 0.04);
+  font-size: 24px;
   border-radius: 10px;
   width: 331px;
   height: 53px;
@@ -52,7 +44,6 @@
   top: 228px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
-
 .sub-2 .depth-4-frame-5 {
   display: flex;
   flex-direction: column;
@@ -65,7 +56,6 @@
   top: 225px;
   overflow: hidden;
 }
-
 .sub-2 .div {
   color: #121417;
   text-align: left;
@@ -79,9 +69,9 @@
   text-overflow: ellipsis;
   overflow: hidden;
 }
-
 .sub-2 .rectangle-6 {
   background: rgba(25, 0, 115, 0.04);
+  font-size: 24px;
   border-radius: 10px;
   width: 331px;
   height: 53px;
@@ -90,7 +80,6 @@
   top: 291px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
-
 .sub-2 .depth-4-frame-6 {
   display: flex;
   flex-direction: column;
@@ -103,7 +92,18 @@
   top: 288px;
   overflow: hidden;
 }
-
+.sub-2 .depth-4-frame-11 {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  align-items: center;
+  justify-content: flex-start;
+  height: 56px;
+  position: absolute;
+  left: 50px;
+  top: 288px;
+  overflow: hidden;
+}
 .sub-2 .depth-4-frame-52 {
   display: flex;
   flex-direction: column;
@@ -117,21 +117,7 @@
   overflow: hidden;
 }
 
-.sub-2 .div2 {
-  color: #000000;
-  text-align: left;
-  font-family: "NotoSerif-DisplayBold", sans-serif;
-  font-size: 32px;
-  line-height: 55px;
-  font-weight: bold;
-  position: absolute;
-  left: 45px;
-  top: 150px;
-  width: 338px;
-  height: 72px;
-}
-
-.sub-2 .line-4 {
+.sub-2 .line-uppermiddle {
   margin-top: -1px;
   border-style: solid;
   border-color: #000000;
@@ -145,61 +131,43 @@
   transform: rotate(0deg) scale(1, 1);
 }
 
-.sub-2 .depth-4-frame-12 {
-  display: flex;
-  flex-direction: column;
-  gap: 0px;
-  align-items: center;
-  justify-content: flex-start;
-  width: 547px;
-  height: 56px;
-  position: absolute;
-  left: -85px;
-  top: 384.75px;
-  overflow: hidden;
-}
-
-.sub-2 ._1500-0-5 {
+.sub-2 .text-box-1 {
   color: #121417;
-  text-align: left;
+  font-size: 24px;
+  align-content: center;
+  text-align: right;
   position: relative;
-  width: 326px;
-  height: 140px;
+  top: 20px;
+  left: 50px;
+  width: 80%;
+  height: 70%;
   text-overflow: ellipsis;
   overflow: hidden;
 }
 
-._1500-0-5-span {
-  color: #121417;
-  font-family: "NotoSerif-DisplayBold", sans-serif;
-  font-size: 24px;
-  line-height: 21px;
-  font-weight: 400;
-}
 
-._1500-0-5-span2 {
-  color: #121417;
-  font-family: "NotoSerif-DisplayBold", sans-serif;
-  font-size: 20px;
-  margin-left: 30px;
-  line-height: 21px;
-  font-weight: 400;
+.sub-2 .image-5 {
+  width: 302px;
+  height: 145px;
+  position: absolute;
+  left: -104px;
+  top: 435.75px;
+  box-shadow: none;
 }
-
 .sub-2 .depth-4-frame-14 {
+  background-color: none;
   display: flex;
   flex-direction: column;
   gap: 0px;
   align-items: center;
   justify-content: flex-start;
-  width: 547px;
-  height: 56px;
   position: absolute;
-  left: -51px;
-  top: 545.75px;
+  top: 565px;
   overflow: hidden;
+  width: 200px;
+  height: 150px;
+  left: 150px;
 }
-
 .sub-2 ._1500-1-17 {
   color: #121417;
   text-align: left;
@@ -208,23 +176,6 @@
   height: 140px;
   text-overflow: ellipsis;
   overflow: hidden;
-}
-
-._1500-1-17-span {
-  color: #121417;
-  font-family: "NotoSerif-DisplayBold", sans-serif;
-  font-size: 24px;
-  line-height: 21px;
-  font-weight: 400;
-}
-
-._1500-1-17-span2 {
-  color: #121417;
-  font-family: "NotoSerif-DisplayBold", sans-serif;
-  margin-left: 30px;
-  font-size: 20px;
-  line-height: 21px;
-  font-weight: 400;
 }
 
 .sub-2 ._65 {
@@ -242,7 +193,6 @@
   text-overflow: ellipsis;
   overflow: hidden;
 }
-
 .sub-2 .div3 {
   color: #121417;
   text-align: left;
@@ -258,7 +208,6 @@
   text-overflow: ellipsis;
   overflow: hidden;
 }
-
 .sub-2 .div4 {
   color: #121417;
   text-align: left;
@@ -274,34 +223,21 @@
   text-overflow: ellipsis;
   overflow: hidden;
 }
-
-.sub-2 .image-removebg-preview-23-1 {
+.sub-2 .image-bus {
   width: 64px;
   height: 60px;
   position: absolute;
-  left: 71px;
-  top: 448px;
+  left: 60px;
+  top: 425px;
   object-fit: cover;
 }
-
-.sub-2 .image-removebg-preview-24-1 {
+.sub-2 .image-train {
   width: 135px;
   height: 145px;
   position: absolute;
-  left: 35px;
-  top: 582px;
+  left: 25px;
+  top: 570px;
   object-fit: cover;
-}
-
-.sub-2 .rectangle-52 {
-  background: #a3cca2;
-  border-radius: 10px;
-  width: 188px;
-  height: 82px;
-  position: absolute;
-  left: 31px;
-  top: 56px;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .sub-2 .depth-4-frame-53 {
@@ -316,37 +252,6 @@
   overflow: hidden;
 }
 
-.sub-2 .div5 {
-  text-align: center;
-  font-family: "NotoSerif-DisplayBold", sans-serif;
-  font-size: 32px;
-  line-height: 21px;
-  font-weight: 400;
-  position: relative;
-  width: 326px;
-  height: 57px;
-  text-overflow: ellipsis;
-  overflow: visible;
-}
-
-.sub-2 .depth-3-frame-2 {
-  background: transparent;
-  padding: 0px 16px 0px 16px;
-  display: flex;
-  flex-direction: row;
-  gap: 0px;
-  align-items: center;
-  justify-content: center;
-  width: 343px;
-  height: 61px;
-  min-width: 84px;
-  max-width: 480px;
-  position: absolute;
-  left: 19px;
-  top: 750px;
-  overflow: visible;
-}
-
 .sub-2 .depth-4-frame-0 {
   display: flex;
   flex-direction: column;
@@ -356,41 +261,4 @@
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
-}
-
-.div-5-span3 {
-  color: #121417;
-  font-family: "NotoSerif-DisplayBold", sans-serif;
-  font-size: 32px;
-  line-height: 21px;
-  font-weight: 400;
-}
-
-.div-5-span4 {
-  color: #f6fbff;
-  font-family: "NotoSerif-DisplayBold", sans-serif;
-  font-size: 32px;
-  line-height: 21px;
-  font-weight: 400;
-}
-
-.fetch-route-button {
-  background: #007bff;
-  color: #fff;
-  font-size: 24px;
-  border-radius: 10px;
-  padding: 10px 20px;
-  cursor: pointer;
-  width: 188px;
-  height: 60px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border: none;
-  position: absolute;
-  left: 50%;
-  top: 320px;
-  transform: translateX(-50%);
-}
-
-.fetch-route-button:hover {
-  background-color: #0056b3;
 }
