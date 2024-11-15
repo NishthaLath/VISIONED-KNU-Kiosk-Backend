@@ -10,12 +10,12 @@ export const Frame6 = ({ className, ...props }) => {
 
     const handleGoBack = () => {
         playTextToSpeech('이전 페이지로 돌아가겠습니다.');
-        navigate(-1); // Navigate to the previous page
+        navigate(-1); 
     };
 
     const handleNavigateToCall = () => {
-        playTextToSpeech('담당 정류장 안내원과 전화연결 중입니다. 잠시만 기다려주세요.');
-        navigate("/call"); // Navigate to the App.jsx in the 'call' directory
+        playTextToSpeech('안내원 도움 요청하기 버튼을 눌렀습니다. 안내원과 연결 중입니다. 잠시만 기다려주세요.');
+        navigate("/call");
     };
 
     return (

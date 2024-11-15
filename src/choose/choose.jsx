@@ -9,21 +9,23 @@ import { playTextToSpeech } from "../services/ttsService.js";
 export const Choose = ({ className, ...props }) => {
     const navigate = useNavigate();
 
-    const handleGoBack = () => {
-        navigate(-1); // Navigate to the previous page
-    };
+    const handleGoBack = async () => {
+        playTextToSpeech('이전 페이지로 돌아가겠습니다.');
+        navigate(-1);
+      };
 
     const handleNavigate = () => {
+        playTextToSpeech('대중교통 페이지로 이동합니다. 도착지를 검새하시거나 버튼을 누르고 말해주세요.');
         navigate("/voice");
     };
 
     const handleNavigateToCall = () => {
-        playTextToSpeech("안내원 도움 요청하기 버튼을 눌렀습니다. 안내원이 도움을 드리러 오겠습니다.", 1.0);
+        playTextToSpeech("안내원 도움 요청하기 버튼을 눌렀습니다. 안내원과 연결 중입니다. 잠시만 기다려주세요.", 1.0);
         navigate("/call");
     }
 
-    // test용 임시 함수 생성
     const handleNavigateToFindingTaxi = () => {
+        playTextToSpeech('택시 페이지로 이동합니다. 택시를 호출하시겠습니까?');
         navigate("/taxi_find");
     }
 
