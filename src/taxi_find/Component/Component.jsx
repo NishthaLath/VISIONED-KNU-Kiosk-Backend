@@ -23,7 +23,7 @@ export const Component = ({ className, ...props }) => {
     };
 
     const handleNavigateToFound = () => {
-        playTextToSpeech('주위에 있는 택시를 찾았습니다. 기사님을 호출하고 싶으시면 확인 버튼을 눌러주세요.');
+        playTextToSpeech('주위에 있는 택시를 찾았습니다. 알래 확인 버턴을 노르면 택시 기사 호출이 완료됩니다.');
         navigate("/taxi_found");
     };
 

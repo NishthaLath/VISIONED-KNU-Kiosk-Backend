@@ -3,16 +3,21 @@ import { useNavigate } from "react-router-dom";
 import CallButton from "../../share/CallButton.jsx";
 import BackButton from "../../share/BackButton.jsx";
 import "../../share/allshared.css"
+import React from "react";
+import { playTextToSpeech } from "../../services/ttsService";
+
 
 export const Frame6 = ({ className, ...props }) => {
     const navigate = useNavigate();
 
     const handleGoBack = () => {
-        navigate(-1); // Navigate to the previous page
+        playTextToSpeech('이전 페이지로 돌아가겠습니다.');
+        navigate(-1); 
     };
 
     const handleNavigateToCall = () => {
-        navigate("/call"); // Navigate to the App.jsx in the 'call' directory
+        playTextToSpeech('안내원 도움 요청하기 버튼을 눌렀습니다. 안내원과 연결 중입니다. 잠시만 기다려주세요.');
+        navigate("/call");
     };
 
   return (
