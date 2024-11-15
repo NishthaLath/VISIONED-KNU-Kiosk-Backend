@@ -1,7 +1,10 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import TypewriterText from "./TypewriterText";
 import CallButton from "../share/CallButton.jsx";
 import "./Main.css";
+import "../share/allshared.css";
 import { playTextToSpeech } from "../services/ttsService";
 
 
@@ -21,11 +24,10 @@ export const Main = ({ className, ...props }) => {
     return (
         <div className={"main " + className}>
             <img
-                className="image-removebg-preview-19-2"
-                src="image-removebg-preview-19-20.png"
-                alt = ""
+                className="deagu-logo"
+                src="deagu-logo.png" alt="대구시 로고"
             />
-            <div className="div2">
+            <div className="show-big-text">
                 도착지 약도
                 <br/>
                 출력 서비스를
@@ -38,11 +40,11 @@ export const Main = ({ className, ...props }) => {
                     시작하기
                 </button>
             </div>
-            <div className="depth-3-frame-2">
-                <CallButton onClick={handleNavigateToCall} label="안내원 도움 요청"/>
+            <div className="call-button-frame">
+                <CallButton onClick={handleNavigateToCall}/>
             </div>
-            <div className="line-5"></div>
-            <div className="line-2"></div>
+            <div className="line-upper"></div>
+            <div className="line-lower"></div>
         </div>
     );
 };
