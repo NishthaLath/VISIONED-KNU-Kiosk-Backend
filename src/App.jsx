@@ -1,33 +1,42 @@
-// src/App.jsx
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Main from './Main/Main';
-import Voice from './voice/Sub1/Sub1';
-import { RouteOption } from "./RouteOption/RouteOption";
-import Sub2Route from './route/Sub2/Route';
-import Check from './check/Group8/Group8';
-import Print from './print/Frame6/Frame6';
-import Call from './call/Frame7/Frame7';
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './styles.css';
 import './vars.css';
 
-function App() {
+import App from "./App"; // Assuming App is the main component
+import { Main } from "./Main/Main";
+import ChooseApp from "./choose/Choose.jsx";
+import VoiceApp from "./voice/App.jsx"; // Adjust path as necessary
+import RouteApp from "./route/App.jsx";
+import RouteOptionApp from "./route_option/App.jsx";
+import CheckApp from "./check/App.jsx";
+import CallApp from "./call/App.jsx";
+import PrintApp from "./print/App.jsx";
+import TaxiFindApp from "./taxi_find/App.jsx";
+import TaxiFoundApp from "./taxi_found/App.jsx";
+import TaxiPrintApp from "./taxi_print/App.jsx";
 
-  return (
-    <Router>
-      <div className="app-container">
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/voice" element={<Voice />} />
-          <Route path="/route_option" element={<RouteOption />} />
-          <Route path="/route" element={<Sub2Route />} />
-          <Route path="/check" element={<Check />} />
-          <Route path="/print" element={<Print />} />
-          <Route path="/call" element={<Call />} />
-        </Routes>
-      </div>
-    </Router>
-  );
-}
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
 
-export default App;
+root.render(
+    <StrictMode>
+        <Router>
+            <Routes>
+                <Route path="/" element={<Main />} />
+                <Route path="/choose" element={<ChooseApp />} />
+                <Route path="/voice" element={<VoiceApp />} />
+                <Route path="/route" element={<RouteApp />} />
+                <Route path="/route_option" element={<RouteOptionApp />} />
+                <Route path="/app" element={<App />} />
+                <Route path="/check" element={<CheckApp />} />
+                <Route path="/call" element={<CallApp />} />
+                <Route path="/print" element={<PrintApp />} />
+                <Route path="/taxi_find" element={<TaxiFindApp />} />
+                <Route path="/taxi_found" element={<TaxiFoundApp />} />
+                <Route path="/taxi_print" element={<TaxiPrintApp />} />
+            </Routes>
+        </Router>
+    </StrictMode>
+);

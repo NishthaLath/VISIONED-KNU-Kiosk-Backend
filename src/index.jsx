@@ -1,9 +1,14 @@
-// src/index.jsx
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import './styles.css';
-import './vars.css';
+/* eslint-disable no-unused-vars */
+import "./styles.css";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { Main } from "./Main/Main";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<React.StrictMode><App /></React.StrictMode>);
+
+export default function App() {
+  return (
+    <div>
+      <Main />
+    </div>
+  );
+}
