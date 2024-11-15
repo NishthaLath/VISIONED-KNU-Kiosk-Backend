@@ -20,7 +20,7 @@
   position: absolute;
   inset: 0;
 }
-.group-8 .depth-2-frame-0 {
+.group-8 .goto_print {
   display: flex;
   flex-direction: row;
   gap: 0px;
@@ -30,8 +30,40 @@
   height: 61px;
   position: absolute;
   left: 19px;
-  top: 671px;
+  top: 685px;
   box-shadow: none;
+}
+.group-8 .print-call-button-frame {
+  background: transparent;
+  padding: 0px;
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: center;
+  justify-content: center;
+  width: 343px;
+  height: 61px;
+  min-width: 84px;
+  max-width: 480px;
+  position: absolute;
+  left: 19px;
+  top: 770px;
+  overflow: visible;
+}
+
+.group-8 .line-middlelower2 {
+  margin-top: -1px;
+  border-style: solid;
+  border-color: #000000;
+  border-width: 1px 0 0 0;
+  width: 358px;
+  height: 0px;
+  position: absolute;
+  left: 16px;
+  top: 670px;
+  box-shadow: none;
+  transform-origin: 0 0;
+  transform: rotate(0deg) scale(1, 1);
 }
 .group-8 .depth-3-frame-0 {
   background: #a3cca2;

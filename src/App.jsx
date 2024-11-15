@@ -9,6 +9,9 @@ import Check from './check/Group8/Group8';
 import Print from './print/Frame6/Frame6';
 import Call from './call/Frame7/Frame7';
 import ChooseApp from "./choose/choose.jsx";
+import TaxiFindApp from "./taxi_find/App.jsx";
+import TaxiFoundApp from "./taxi_found/App.jsx";
+import TaxiPrintApp from "./taxi_print/App.jsx";
 import './styles.css';
 import './vars.css';
 
@@ -26,6 +29,9 @@ function App() {
           <Route path="/check" element={<Check />} />
           <Route path="/print" element={<Print />} />
           <Route path="/call" element={<Call />} />
+          <Route path="/taxi_find" element={<TaxiFindApp />} />
+          <Route path="/taxi_found" element={<TaxiFoundApp />} />
+          <Route path="/taxi_print" element={<TaxiPrintApp />} />
         </Routes>
       </div>
     </Router>

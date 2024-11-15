@@ -31,7 +31,8 @@ export const Choose = ({ className, ...props }) => {
         <div className={"choose " + className}>
             <img
                 className="deagu-logo"
-                src="deagu-logo.png" alt = "대구로고"
+                src="deagu-logo.png"
+                alt = ""
             />
             <div className="show-big-text">
                 이동수단을
@@ -60,5 +61,4 @@ export const Choose = ({ className, ...props }) => {
         </div>
     );
 };
-
 export default Choose;
