@@ -1,8 +1,8 @@
 // src/components/CallButton.jsx
 import React from "react";
-import "./CallButton.css"; // Import the CSS file for button styling
+import "./allshared.css"; // Import the CSS file for button styling
 
-const CallButton = ({ onClick, label = "Call" }) => {
+const CallButton = ({ onClick, label = "안내원 전화 연결" }) => {
     return (
         <button className="call-button" onClick={onClick}>
             {label}

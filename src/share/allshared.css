@@ -1,0 +1,142 @@
+.back-button {
+    background: #a3cca2;
+    border-radius: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    position: absolute;
+    left: 33px;
+    top: 40px;
+    box-shadow: none;
+    width: 188px;
+    height: 82px;
+}
+
+.back-button:hover {
+    color: white;
+    background-color: #ff004d;
+    transform: scale(1.05);
+    overflow: visible;
+}
+
+.call-button {
+    width: 331px;           /* Take the full width of the container */
+    height: 100%;          /* Take the full height of the container */
+    font-size: 30px;      /* Adjust to fit text within the container */
+    font-weight: bold;
+    border-radius: 8px;
+    border: none;
+    background-color: #a3cca2; /* Button background */
+    color: #000000;            /* Text color */
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+    overflow: visible;
+}
+
+.call-button:hover {
+    color: white;
+    background-color: #ff004d;
+    transform: scale(1.05);
+    overflow: visible;
+}
+
+.call-button-frame {
+    background: transparent;
+    padding: 0px;
+    display: flex;
+    flex-direction: row;
+    gap: 0px;
+    align-items: center;
+    justify-content: center;
+    width: 343px;
+    height: 61px;
+    min-width: 84px;
+    max-width: 480px;
+    position: absolute;
+    left: 19px;
+    top: 760px;
+    overflow: visible;
+}
+
+.deagu-logo {
+    width: 85px;
+    height: 103px;
+    position: absolute;
+    left: 280px;
+    top: 30px;
+    object-fit: cover;
+}
+
+.line-upper {
+    margin-top: -1px;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px 0 0 0;
+    width: 358px;
+    height: 0px;
+    position: absolute;
+    left: 16px;
+    top: 150px;
+    transform-origin: 0 0;
+    transform: scale(1.05);
+}
+
+.line-lower {
+    margin-top: -1px;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 1px 0 0 0;
+    width: 358px;
+    height: 0px;
+    position: absolute;
+    left: 16px;
+    top: 739px;
+    box-shadow: none;
+    transform-origin: 0 0;
+    transform: rotate(0deg) scale(1, 1);
+
+}
+
+.show-big-text {
+    color: #121417;
+    text-align: left;
+    font-family: "NotoSerif-DisplayBold", sans-serif;
+    font-size: 40px;
+    line-height: 55px;
+    font-weight: bold;
+    position: absolute;
+    left: 27px;
+    top: 150px;
+    width: 468px;
+    height: 243px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.show-middle-text {
+    color: #000000;
+    text-align: left;
+    font-family: "NotoSerif-DisplayBold", sans-serif;
+    font-size: 32px;
+    line-height: 55px;
+    font-weight: bold;
+    position: absolute;
+    left: 27px;
+    top: 170px;
+    width: 338px;
+    height: 72px;
+}
+
+.show-small-text {
+    color: #000000;
+    text-align: left;
+    font-family: "NotoSerif-DisplayBold", sans-serif;
+    font-size: 35px;
+    line-height: 55px;
+    font-weight: bold;
+    position: absolute;
+    left: 27px;
+    top: 170px;
+    width: 338px;
+    height: 72px;
+}

@@ -1,7 +1,7 @@
 import React from "react";
-import "./BackButton.css"; // Import the CSS file for button styling
+import "./allshared.css";
 
-const BackButton = ({ onClick, label = "Back" }) => {
+const BackButton = ({ onClick, label = "뒤로가기" }) => {
     return (
         <button className="back-button" onClick={onClick}>
             {label}
