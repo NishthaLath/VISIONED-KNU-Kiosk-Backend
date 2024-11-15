@@ -2,6 +2,7 @@ import "./Group8.css";
 import { useNavigate } from "react-router-dom";
 import CallButton from "../../share/CallButton.jsx";
 import BackButton from "../../share/BackButton.jsx";
+import "../../share/allshared.css"
 import React from "react";
 import { playTextToSpeech } from "../../services/ttsService";
 
@@ -13,31 +14,10 @@ export const Group8 = ({ className, ...props }) => {
       navigate(-1);
     };
 
-  const handleNavigateToCall = async () => {
-    try {
-      const response = await fetch('http://localhost:3001/synthesize', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ text: '담당 정류장 안내원과 전화연결 중입니다. 잠시만 기다려주세요.' }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      const audioBlob = await response.blob();
-      const audioUrl = URL.createObjectURL(audioBlob);
-      const audio = new Audio(audioUrl);
-      audio.play();
-
-      // Navigate to the route after the audio starts playing
-      navigate("/call"); // Update this path if "App.jsx" has a different route, e.g., "/app"
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
+    const handleNavigateToCall = () => {
+      playTextToSpeech('담당 정류장 안내원과 전화연결 중입니다. 잠시만 기다려주세요.');
+      navigate("/call"); 
+    };
 
   const handleNavigateToPrint = () => {
     playTextToSpeech('약도가 출력되었습니다.하단의 출력창을 확인하세요.');
