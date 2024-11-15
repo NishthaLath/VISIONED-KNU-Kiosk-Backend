@@ -24,3 +24,5 @@ yarn-debug.log*
 yarn-error.log*
 src/Content
 Dialogflow API Client.jsonSenior_kiosk_key.json
+Dialogflow API Client.json
+Senior_kiosk_key.json
