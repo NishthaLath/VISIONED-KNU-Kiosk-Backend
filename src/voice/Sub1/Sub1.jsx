@@ -16,12 +16,12 @@ export const Sub1 = ({ className, ...props }) => {
   };
 
   const handleNavigateToCall = () => {
-    playTextToSpeech('담당 정류장 안내원과 전화연결 중입니다. 잠시만 기다려주세요.');
+    playTextToSpeech('안내원 도움 요청하기 버튼을 눌렀습니다. 안내원과 연결 중입니다. 잠시만 기다려주세요.');
     navigate("/call"); 
   };
 
   const handleNavigateToRouteOption = async () => {
-    playTextToSpeech('목적지를 말해주세요.');
+    playTextToSpeech('화면에 있는 마이크를 노르고, 목적지를 말해주세요.');
     navigate("/route_option"); 
   };
 
