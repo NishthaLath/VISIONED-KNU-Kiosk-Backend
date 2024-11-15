@@ -25,7 +25,7 @@ function App() {
           <Route path="/choose" element={<ChooseApp />} />
           <Route path="/voice" element={<Voice />} />
           <Route path="/route_option" element={<RouteOption />} />
-          <Route path="/route" element={<Sub2Route />} />
+          <Route path="/Sub2" element={<Sub2Route />} />
           <Route path="/check" element={<Check />} />
           <Route path="/print" element={<Print />} />
           <Route path="/call" element={<Call />} />

@@ -37,7 +37,8 @@ export const RouteOption = ({ className, ...props }) => {
       playTextToSpeech('목적지 먼저 입력해주세요.');
       return;
     }
-    navigate("/sub2", { state: { destination: text } }); // Navigate to the Sub2 page with the destination
+    playTextToSpeech('원하는 경로를 선택하세요.');
+    navigate("/Sub2", { state: { destination: text } }); // Navigate to the Sub2 page with the destination
   };
 
   const startRecording = () => {

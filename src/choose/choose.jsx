@@ -15,7 +15,7 @@ export const Choose = ({ className, ...props }) => {
       };
 
     const handleNavigate = () => {
-        playTextToSpeech('대중교통 페이지로 이동합니다. 도착지를 검새하시거나 버튼을 누르고 말해주세요.');
+        playTextToSpeech('대중교통 페이지로 이동합니다. 도착지를 검색하시거나 버튼을 누르고 말해주세요.');
         navigate("/voice");
     };
 

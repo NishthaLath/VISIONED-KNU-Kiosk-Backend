@@ -11,7 +11,7 @@ export const Sub2 = ({ className, ...props }) => {
   const location = useLocation();
   const destination = location.state?.destination || "도착지";
 
-  const handleGoBack = async () => {
+  const handleGoBack = () => {
       playTextToSpeech('이전 페이지로 돌아가겠습니다.');
       navigate(-1);
     };
@@ -22,7 +22,7 @@ export const Sub2 = ({ className, ...props }) => {
     };
 
   const handleNavigateToCheck = () => {
-    playTextToSpeech('경로를 선택하셨습니다. 확인을 눌러주세요.');
+    playTextToSpeech('경로를 선택하셨습니다. 확인하시고 약도출력 버튼을 눌러주세요.');
     navigate("/check"); 
   };
 

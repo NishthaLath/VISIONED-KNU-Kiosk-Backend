@@ -9,8 +9,8 @@ export const Frame6 = ({ className, ...props }) => {
     const navigate = useNavigate();
 
     const handleGoBack = () => {
-        playTextToSpeech('이전 페이지로 돌아가겠습니다.');
-        navigate(-1); 
+        playTextToSpeech("메인 페이지로 돌아가겠습니다.");
+        navigate("/"); 
     };
 
     const handleNavigateToCall = () => {
@@ -42,7 +42,7 @@ export const Frame6 = ({ className, ...props }) => {
                 </div>
             </div>
             <BackButton
-                onClick={handleGoBack} label="뒤로가기"/>
+                onClick={handleGoBack} label="처음으로"/>
   
             <img className="image-receipt" src="receipt.png" alt = ""/>
         </div>

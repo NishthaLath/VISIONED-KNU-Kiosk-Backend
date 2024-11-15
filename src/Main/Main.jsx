@@ -12,12 +12,12 @@ export const Main = ({ className, ...props }) => {
     const navigate = useNavigate();
 
     const handleNavigate = () => {
-        playTextToSpeech("안녕하세요, 서비스를 시작합니다. 안내원의 도움이 필요하신 경우, 아래에 있는 안내원 도움 요청하기 버튼을 눌러주세요. 완하는 이동수단을 선택해 주세요.", 1.0);
+        playTextToSpeech("안녕하세요, 서비스를 시작합니다. 도움이 필요하신 경우, 아래 버튼을 노르고 안내원과 연락할 수 있습니다. 완하는 이동수단을 선택해 주세요.", 1.0);
         navigate("/choose");
     };
 
     const handleNavigateToCall = () => {
-        playTextToSpeech("안내원 도움 요청하기 버튼을 눌렀습니다. 담당 정류장 안내원과 전화연결 중입니다. 잠시만 기다려주세요.", 1.0);
+        playTextToSpeech("안내원 전화버튼을 눌렀습니다. 담당 정류장 안내원과 전화연결 중입니다. 잠시만 기다려주세요.", 1.0);
         navigate("/call");
     }
     
