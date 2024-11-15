@@ -1,9 +1,13 @@
 /* eslint-disable no-unused-vars */
 /* src/route/Route.jsx */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { GoogleMap, LoadScript, DirectionsService, DirectionsRenderer } from "@react-google-maps/api";
-import axios from 'axios';
+import {
+  GoogleMap, 
+  DirectionsRenderer,
+  useJsApiLoader,
+  Autocomplete,
+} from '@react-google-maps/api';
 import "./Route.css";
 import { playTextToSpeech } from "../../services/ttsService";
 import CallButton from "../../share/CallButton.jsx";
@@ -14,9 +18,10 @@ const mapContainerStyle = {
   height: "400px",
 };
 
+// 경북대학교정문앞 coordinates
 const center = {
-  lat: 35.8886, // Latitude for 경북대학교정문앞
-  lng: 128.6105, // Longitude for 경북대학교정문앞
+  lat: 35.8840,
+  lng: 128.6132,
 };
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
@@ -27,23 +32,44 @@ const Route = () => {
   const [routes, setRoutes] = useState([]);
   const [selectedRoute, setSelectedRoute] = useState(null);
   const [destination, setDestination] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [distance, setDistance] = useState('');
+  const [duration, setDuration] = useState('');
+
+  const destinationRef = useRef(null);
+
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: API_KEY,
+    libraries: ["places"],
+  });
 
   useEffect(() => {
     if (location.state && location.state.destination) {
       setDestination(location.state.destination);
-      fetchRoutes(center, location.state.destination);
+      calculateRoute(location.state.destination);
     }
   }, [location.state]);
 
-  const fetchRoutes = async (origin, destination) => {
-    try {
-      const response = await axios.post('http://localhost:3001/get-routes', {
-        origin,
-        destination,
-      });
-      setRoutes(response.data.routes);
-    } catch (error) {
-      console.error('Error fetching routes:', error);
+  const calculateRoute = async (destination) => {
+    if (!destination) {
+      return;
+    }
+    const directionsService = new window.google.maps.DirectionsService();
+    const results = await directionsService.route({
+      origin: center,
+      destination: destination,
+      travelMode: window.google.maps.TravelMode.TRANSIT,
+    });
+    console.log('Directions results:', results);
+    setRoutes(results.routes);
+    setDistance(results.routes[0].legs[0].distance.text);
+    setDuration(results.routes[0].legs[0].duration.text);
+  };
+
+  const handlePlaceChanged = () => {
+    if (destinationRef.current && destinationRef.current.value) {
+      setDestination(destinationRef.current.value);
+      calculateRoute(destinationRef.current.value);
     }
   };
 
@@ -66,6 +92,10 @@ const Route = () => {
     navigate("/check");
   };
 
+  if (!isLoaded) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="sub-2">
       <div className="rectangle-7" onClick={handleNavigateToCheck} style={{ cursor: "pointer" }}></div>
@@ -81,27 +111,31 @@ const Route = () => {
       <div className="depth-4-frame-6">
         <div className="div">
           <br />
-          <button className="destination-button" onClick={() => fetchRoutes(center, destination)} style={{ cursor: "pointer" }}>
-            {destination}
-          </button>
+          <Autocomplete onLoad={(ref) => (destinationRef.current = ref)} onPlaceChanged={handlePlaceChanged}>
+            <input type="text" placeholder="목적지" style={{ width: "100%", padding: "10px", fontSize: "16px" }} />
+          </Autocomplete>
         </div>
       </div>
       <div className="div2">원하는 경로를 선택하세요.</div>
       <div className="line-4"></div>
-      {routes.map((route, index) => (
-        <div key={index} className={`rectangle-${index + 7}`} onClick={() => handleRouteClick(index)} style={{ cursor: "pointer" }}>
-          <div className="div">
-            <span className="_1500-0-5-span">{route.summary}</span>
-            <br />
-            <span className="_1500-0-5-span2">
-              Distance: {route.distance}, Duration: {route.duration}
-            </span>
+      {loading ? (
+        <div>Loading routes...</div>
+      ) : (
+        routes.map((route, index) => (
+          <div key={index} className={`rectangle-${index + 7}`} onClick={() => handleRouteClick(index)} style={{ cursor: "pointer" }}>
+            <div className="div">
+              <span className="_1500-0-5-span">{route.summary}</span>
+              <br />
+              <span className="_1500-0-5-span2">
+                Distance: {route.legs[0].distance.text}, Duration: {route.legs[0].duration.text}
+              </span>
+            </div>
           </div>
-        </div>
-      ))}
-      <div className="_65">(65세 이상 무료)</div>
+        ))
+      )}
+      <div className="_65" onClick={handleNavigateToCheck} style={{ cursor: "pointer" }}>(Do you want to choose above route?)</div>
       {routes.map((route, index) => (
-        <div key={index} className={`div${index + 3}`}>{route.steps.find(step => step.transitDetails)?.arrivalStop}</div>
+        <div key={index} className={`div${index + 3}`}>{route.legs[0].steps.find(step => step.transitDetails)?.arrivalStop}</div>
       ))}
       <img className="image-removebg-preview-23-1" src="image-removebg-preview-23-10.png" alt="Bus" />
       <img className="image-removebg-preview-24-1" src="image-removebg-preview-24-10.png" alt="Subway" />
@@ -115,16 +149,18 @@ const Route = () => {
         </div>
       </div>
       {selectedRoute && (
-        <LoadScript googleMapsApiKey={API_KEY}>
-          <GoogleMap
-            mapContainerStyle={mapContainerStyle}
-            center={center}
-            zoom={14}
-          >
-            <DirectionsRenderer directions={{ routes: [selectedRoute] }} />
-          </GoogleMap>
-        </LoadScript>
+        <GoogleMap
+          mapContainerStyle={mapContainerStyle}
+          center={center}
+          zoom={14}
+        >
+          <DirectionsRenderer directions={{ routes: [selectedRoute] }} />
+        </GoogleMap>
       )}
+      <div className="route-info">
+        <p>Distance: {distance}</p>
+        <p>Duration: {duration}</p>
+      </div>
     </div>
   );
 };
