@@ -12,8 +12,8 @@ export const Main = ({ className, ...props }) => {
     const navigate = useNavigate();
 
     const handleNavigate = () => {
-        playTextToSpeech("안녕하세요, 도착지 약도 출력 서비스 입니다. 마이크 버튼을 누른 후 목적지를 말씀해 주시거나, 검색창에 입력해 주세요. 안내원의 도움이 필요하신 경우, 아래에 있는 안내원 도움 요청하기 버튼을 눌러주세요.", 1.0);
-        navigate("/voice");
+        playTextToSpeech("안녕하세요, 도착지 약도 출력 서비스 입니다. 대중교통이나 택시를 선택하시기 바랍니다.. 안내원의 도움이 필요하신 경우, 아래에 있는 안내원 도움 요청하기 버튼을 눌러주세요.", 1.0);
+        navigate("/choose");
     };
 
     const handleNavigateToCall = () => {
@@ -25,7 +25,7 @@ export const Main = ({ className, ...props }) => {
         <div className={"main " + className}>
             <img
                 className="deagu-logo"
-                src="deagu-logo.png" alt="대구시 로고"
+                src="deagu-logo.png" alt = "대구로고"
             />
             <div className="show-big-text">
                 도착지 약도
