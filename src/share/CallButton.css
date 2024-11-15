@@ -1,0 +1,20 @@
+.call-button {
+    width: 331px;           /* Take the full width of the container */
+    height: 100%;          /* Take the full height of the container */
+    font-size: 30px;      /* Adjust to fit text within the container */
+    font-weight: bold;
+    border-radius: 8px;
+    border: none;
+    background-color: #a3cca2; /* Button background */
+    color: #000000;            /* Text color */
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+    overflow: visible;
+}
+
+.call-button:hover {
+    color: white;
+    background-color: #ff004d;
+    transform: scale(1.05);
+    overflow: visible;
+}

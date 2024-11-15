@@ -1,0 +1,295 @@
+.div,
+.div * {
+  box-sizing: border-box;
+}
+.div {
+  background: #ffffff;
+  height: 852px;
+  position: relative;
+  overflow: hidden;
+}
+.div .rectangle-9 {
+  background: #ffffff;
+  border-radius: 20px;
+  border-style: solid;
+  border-color: #000000;
+  border-width: 1px;
+  width: 342px;
+  height: 81px;
+  position: absolute;
+  left: 22px;
+  top: 502px;
+  box-shadow: transparent;
+}
+.div .line-7 {
+  margin-top: -1px;
+  border-style: solid;
+  border-color: #000000;
+  border-width: 1px 0 0 0;
+  width: 305.01px;
+  height: 0px;
+  position: absolute;
+  left: 41px;
+  top: 124px;
+  transform-origin: 0 0;
+  transform: rotate(0deg) scale(1, 1);
+}
+.div .line-9 {
+  margin-top: -1px;
+  border-style: solid;
+  border-color: #000000;
+  border-width: 1px 0 0 0;
+  width: 305.01px;
+  height: 0px;
+  position: absolute;
+  left: 41px;
+  top: 406px;
+  transform-origin: 0 0;
+  transform: rotate(0deg) scale(1, 1);
+}
+.div .line-8 {
+  margin-top: -1px;
+  border-style: solid;
+  border-color: #000000;
+  border-width: 1px 0 0 0;
+  width: 305.01px;
+  height: 0px;
+  position: absolute;
+  left: 41px;
+  top: 745px;
+  transform-origin: 0 0;
+  transform: rotate(0deg) scale(1, 1);
+}
+.div .image-removebg-preview-19-3 {
+  width: 102px;
+  height: 103px;
+  position: absolute;
+  left: 291px;
+  top: 4px;
+  object-fit: cover;
+}
+.div .depth-3-frame-2 {
+  background: transparent;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: center;
+  justify-content: center;
+  width: 343px;
+  height: 61px;
+  min-width: 84px;
+  max-width: 480px;
+  position: absolute;
+  left: 19px;
+  top: 748px;
+  overflow: visible;
+}
+.div .depth-4-frame-1 {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.div .div2 {
+  text-align: center;
+  font-family: "NotoSerif-DisplayBold", sans-serif;
+  font-size: 32px;
+  line-height: 21px;
+  font-weight: 400;
+  position: relative;
+  width: 326px;
+  height: 57px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.div-2-span {
+  color: #121417;
+  font-family: "NotoSerif-DisplayBold", sans-serif;
+  font-size: 32px;
+  line-height: 21px;
+  font-weight: 400;
+}
+.div-2-span2 {
+  color: #f6fbff;
+  font-family: "NotoSerif-DisplayBold", sans-serif;
+  font-size: 32px;
+  line-height: 21px;
+  font-weight: 400;
+}
+.div .div3 {
+  color: #000000;
+  text-align: left;
+  font-family: "NotoSerif-DisplayBold", sans-serif;
+  font-size: 35px;
+  line-height: 55px;
+  font-weight: bold;
+  position: absolute;
+  left: 45px;
+  top: 150px;
+  width: 338px;
+  height: 72px;
+}
+.div .div4 {
+  color: #000000;
+  text-align: left;
+  font-family: "NotoSerif-DisplayBold", sans-serif;
+  font-size: 35px;
+  line-height: 55px;
+  font-weight: bold;
+  position: absolute;
+  left: 45px;
+  top: 443px;
+  width: 338px;
+  height: 72px;
+}
+.div .div5 {
+  color: #000000;
+  text-align: left;
+  font-family: "NotoSerif-DisplayBold", sans-serif;
+  font-size: 36px;
+  line-height: 18px;
+  font-weight: 400;
+  position: absolute;
+  left: 121px;
+  top: 534px;
+  width: 147px;
+  height: 31px;
+}
+.div .ellipse-1 {
+  background: #93acda;
+  border-radius: 50%;
+  width: 16px;
+  height: 112px;
+  position: absolute;
+  left: 183px;
+  top: 249px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  filter: blur(2px);
+}
+.div .ellipse-2 {
+  background: #93acda;
+  border-radius: 50%;
+  width: 12px;
+  height: 103px;
+  position: absolute;
+  left: 210px;
+  top: 254px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  filter: blur(2px);
+}
+.div .ellipse-4 {
+  background: #93acda;
+  border-radius: 50%;
+  width: 9px;
+  height: 91px;
+  position: absolute;
+  left: 236px;
+  top: 265px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  filter: blur(2px);
+}
+.div .ellipse-6 {
+  background: #93acda;
+  border-radius: 50%;
+  width: 9px;
+  height: 69px;
+  position: absolute;
+  left: 259px;
+  top: 277px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  filter: blur(2px);
+}
+.div .ellipse-7 {
+  background: #93acda;
+  border-radius: 50%;
+  width: 9px;
+  height: 69px;
+  position: absolute;
+  left: 116px;
+  top: 277px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  filter: blur(2px);
+}
+.div .ellipse-5 {
+  background: #93acda;
+  border-radius: 50%;
+  width: 9px;
+  height: 91px;
+  position: absolute;
+  left: 136px;
+  top: 265px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  filter: blur(2px);
+}
+.div .ellipse-3 {
+  background: #93acda;
+  border-radius: 50%;
+  width: 12px;
+  height: 103px;
+  position: absolute;
+  left: 157px;
+  top: 254px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  filter: blur(2px);
+}
+.div .rectangle-10 {
+  background: #a3cca2;
+  border-radius: 20px;
+  width: 139px;
+  height: 95px;
+  position: absolute;
+  left: 35px;
+  top: 619px;
+}
+.div .rectangle-11 {
+  background: #ffbbbb;
+  border-radius: 20px;
+  width: 139px;
+  height: 95px;
+  position: absolute;
+  left: 213px;
+  top: 619px;
+}
+.div .div6 {
+  color: #000000;
+  text-align: left;
+  font-family: "NotoSerif-DisplayBold", sans-serif;
+  font-size: 36px;
+  line-height: 18px;
+  font-weight: bold;
+  position: absolute;
+  left: 86px;
+  top: 656px;
+  width: 52px;
+  height: 31px;
+}
+.div .div6:hover {
+  color: white;
+  background-color: #ff004d;
+  transform: scale(1.05);
+  overflow: visible;
+}
+.div .div7 {
+  color: #000000;
+  text-align: left;
+  font-family: "NotoSerif-DisplayBold", sans-serif;
+  font-size: 36px;
+  line-height: 18px;
+  font-weight: bold;
+  position: absolute;
+  left: 235px;
+  top: 656px;
+  width: 117px;
+  height: 31px;
+}
+.div .div7:hover {
+  color: #ffffff;
+  background-color: #ff004d;
+  transform: scale(1.05);
+  overflow: visible;
+}

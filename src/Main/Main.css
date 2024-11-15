@@ -23,11 +23,7 @@
   position: static;
 }
 .main .depth-3-frame-2 {
-  background: #0d990a;
-  border-radius: 12px;
-  border-style: solid;
-  border-color: #000000;
-  border-width: 1px;
+  background: transparent;
   padding: 0px 16px 0px 16px;
   display: flex;
   flex-direction: row;
@@ -39,9 +35,9 @@
   min-width: 84px;
   max-width: 480px;
   position: absolute;
-  left: 27px;
+  left: 19px;
   top: 748px;
-  overflow: hidden;
+  overflow: visible
 }
 .main .depth-4-frame-0 {
   display: flex;
@@ -52,6 +48,7 @@
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
+  width: 390px;
 }
 .main .div {
   text-align: center;
@@ -75,6 +72,7 @@
 .div-span2 {
   color: #f6fbff;
   font-family: "NotoSerif-DisplayBold", sans-serif;
+  font-weight: bold;
   font-size: 32px;
   line-height: 21px;
   font-weight: 400;
@@ -92,11 +90,11 @@
   text-align: left;
   font-family: "NotoSerif-DisplayBold", sans-serif;
   font-size: 40px;
-  line-height: 45px;
-  font-weight: 400;
+  line-height: 55px;
+  font-weight: bold;
   position: absolute;
   left: 27px;
-  top: 136px;
+  top: 150px;
   width: 468px;
   height: 243px;
   display: flex;
@@ -206,5 +204,7 @@
   left: 16px;
   top: 162px;
   transform-origin: 0 0;
-  transform: rotate(-0.16deg) scale(1, 1);
+  transform: scale(1.05);
 }
+
+

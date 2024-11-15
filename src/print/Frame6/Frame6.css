@@ -42,7 +42,7 @@
   position: absolute;
   left: 28px;
   top: 739px;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: none;
   transform-origin: 0 0;
   transform: rotate(0deg) scale(1, 1);
 }
@@ -62,14 +62,16 @@
   color: #121417;
   text-align: left;
   font-family: "NotoSerif-DisplayBold", sans-serif;
-  font-size: 32px;
-  line-height: 21px;
-  font-weight: 400;
+  font-size: 40px;
+  line-height: 45px;
+  font-weight: bold;
   position: relative;
   align-self: stretch;
-  height: 209px;
   text-overflow: ellipsis;
+  display: flex;
   overflow: hidden;
+  width: 468px;
+  height: 243px;
 }
 .frame-6 .line-3 {
   margin-top: -1px;
@@ -81,29 +83,24 @@
   position: absolute;
   left: 24px;
   top: 173px;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: none;
   transform-origin: 0 0;
   transform: rotate(0deg) scale(1, 1);
 }
 .frame-6 .depth-3-frame-1 {
-  background: #0d990a;
-  border-radius: 12px;
-  border-style: solid;
-  border-color: #000000;
-  border-width: 1px;
-  padding: 0px 16px 0px 16px;
+
   display: flex;
   flex-direction: row;
   gap: 0px;
   align-items: center;
   justify-content: center;
-  width: 352px;
+  width: 343px;
   height: 61px;
   min-width: 84px;
   max-width: 480px;
   position: absolute;
-  left: 23px;
-  top: 763px;
+  left: 19px;
+  top: 750px;
   overflow: hidden;
 }
 .frame-6 .depth-4-frame-1 {
@@ -126,7 +123,7 @@
   width: 326px;
   height: 57px;
   text-overflow: ellipsis;
-  overflow: hidden;
+  overflow: visible;
 }
 .div-2-span {
   color: #121417;
@@ -176,4 +173,21 @@
   font-size: 32px;
   line-height: 21px;
   font-weight: 400;
+}
+
+.div3 {
+  color: #121417;
+  text-align: left;
+  font-family: "NotoSerif-DisplayBold", sans-serif;
+  font-size: 40px;
+  line-height: 55px;
+  font-weight: bold;
+  position: absolute;
+  left: 27px;
+  top: 150px;
+  width: 468px;
+  height: 243px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
