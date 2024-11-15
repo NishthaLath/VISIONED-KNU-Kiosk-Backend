@@ -12,6 +12,7 @@ import ChooseApp from "./choose/choose.jsx";
 import TaxiFindApp from "./taxi_find/App.jsx";
 import TaxiFoundApp from "./taxi_found/App.jsx";
 import TaxiPrintApp from "./taxi_print/App.jsx";
+import TestApp from "./test/Test.jsx";
 import './styles.css';
 import './vars.css';
 
@@ -22,6 +23,7 @@ function App() {
       <div className="app-container">
         <Routes>
           <Route path="/" element={<Main />} />
+          <Route path="/test" element={<TestApp />} />
           <Route path="/choose" element={<ChooseApp />} />
           <Route path="/voice" element={<Voice />} />
           <Route path="/route_option" element={<RouteOption />} />
