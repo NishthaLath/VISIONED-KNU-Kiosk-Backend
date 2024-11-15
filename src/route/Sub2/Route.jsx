@@ -130,3 +130,5 @@ const Route = () => {
 };
 
 export default Route;
+
+// git remote add origin https://github.com/YOUR-GITHUB-USERNAME/REPOSITORY-NAME.git/
