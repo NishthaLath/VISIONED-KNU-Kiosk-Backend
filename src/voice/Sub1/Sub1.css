@@ -55,7 +55,7 @@
   height: 72px;
   position: relative;
   left: 29px;
-  top: 168px;
+  top: 175px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 .sub-1 .depth-4-frame-1 {
@@ -158,14 +158,7 @@
   box-shadow: #a3cca2;
   object-fit: cover;
 }
-.sub-1 .image-removebg-preview-19-2 {
-  width: 102px;
-  height: 103px;
-  position: absolute;
-  left: 288px;
-  top: -6px;
-  object-fit: cover;
-}
+
 .sub-1 .image {
   border-radius: 10px;
   width: 331px;
@@ -200,23 +193,7 @@
   text-overflow: ellipsis;
   overflow: hidden;
 }
-.sub-1 .depth-3-frame-2 {
-  background: transparent;
-  padding: 0px 16px 0px 16px;
-  display: flex;
-  flex-direction: row;
-  gap: 0px;
-  align-items: center;
-  justify-content: center;
-  width: 343px;
-  height: 61px;
-  min-width: 84px;
-  max-width: 480px;
-  position: absolute;
-  left: 19px;
-  top: 748px;
-  overflow: visible;
-}
+
 .sub-1 .depth-4-frame-0 {
   display: flex;
   flex-direction: column;
@@ -261,20 +238,6 @@
   padding: 5px;                /* Adds padding inside input or content-editable div */
 }
 
-.line-2 {
-  margin-top: -1px;
-  border-style: solid;
-  border-color: #000000;
-  border-width: 1px 0 0 0;
-  width: 333.01px;
-  height: 0px;
-  position: absolute;
-  left: 28px;
-  top: 739px;
-  box-shadow: none;
-  transform-origin: 0 0;
-  transform: rotate(0deg) scale(1, 1);
-}
 
 .record-button {
   width: 331px;           /* Take the full width of the container */
