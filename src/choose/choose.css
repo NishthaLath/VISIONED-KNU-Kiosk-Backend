@@ -62,44 +62,46 @@
   font-weight: 400;
 }
 
-.choose .depth-3-frame-1 {
+.choose .frame-1 {
   padding: 12px 16px 12px 16px;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
   width: 390px;
   height: 192px;
   max-width: 480px;
   position: absolute;
   left: 0px;
-  top: 379px;
+  top: 340px;
   box-shadow: 0px 4px 4px 0px rgba(255, 255, 255, 0.25);
 }
-.choose .depth-4-frame-02 {
-  background: #a3cca2;
-  border-radius: 12px;
-  padding: 0px 20px 0px 20px;
+
+.choose .frame-2 {
+  padding: 12px 16px 12px 16px;
   display: flex;
-  flex-direction: row;
-  gap: 0px;
+  flex-direction: column;
+  gap: 12px;
   align-items: center;
-  justify-content: center;
-  width: 100%;
-  flex-shrink: 0;
-  height: 168px;
-  min-width: 84px;
+  justify-content: flex-start;
+  width: 390px;
+  height: 192px;
   max-width: 480px;
-  position: relative;
-  overflow: hidden;
+  position: absolute;
+  left: 0px;
+  top: 520px;
+  box-shadow: 0px 4px 4px 0px rgba(255, 255, 255, 0.25);
 }
+
 .navigate-button {
-  font-size: 2em;
+  font-size: 30px;
   font-weight: bold;/* Increases font size */
-  padding: 60px 120px; /* Adds more padding */
+  width: 350px;
+  height: 150px;
   margin-left: 5px;
-  border-radius: 8px;     /* Rounds the corners */
+  border-radius: 8px;
+  position: absolute;
   border: none;           /* Removes any default border */
   background-color: #a3cca2; /* Changes button color (optional) */
   color: #000000;            /* Makes the text color white */
