@@ -104,7 +104,8 @@ Clone the repository and install the dependencies:
 ```bash
 git clone https://github.com/VISIONED-KNU/Backend.git
 cd Backend
-npm install --legacy-peer-deps```
+npm install --legacy-peer-deps
+```
 
 ## 🚀 Usage
 
