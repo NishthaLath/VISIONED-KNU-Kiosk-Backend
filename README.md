@@ -1,70 +1,213 @@
-# Getting Started with Create React App
+---
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 🚀 VISIONED-KNU Kiosk Backend
 
-## Available Scripts
+This repository contains the backend code for the **VISIONED-KNU Kiosk**, a user-friendly and accessible navigation system designed for seamless interaction using voice recognition, text-to-speech feedback, and route calculation using Google Cloud APIs.
 
-In the project directory, you can run:
+## 📋 Table of Contents
 
-### `npm start`
+- [Introduction](#introduction)
+- [Key Features](#key-features)
+- [Technologies Used](#technologies-used)
+- [Project Structure](#project-structure)
+- [Environment Variables](#environment-variables)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Endpoints](#api-endpoints)
+- [Error Handling](#error-handling)
+- [Docker Setup](#docker-setup)
+- [Contributing](#contributing)
+- [License](#license)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 📖 Introduction
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The **VISIONED-KNU Kiosk Backend** provides the core server-side logic for handling voice-based interactions, converting speech input to text, generating audio feedback, and calculating optimal routes using Google Cloud APIs. This project is focused on enhancing accessibility, particularly for senior citizens and individuals with disabilities, by simplifying the navigation process.
 
-### `npm test`
+## ✨ Key Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Speech-to-Text (STT)**: Converts user speech to text using Google Cloud Speech-to-Text API.
+- **Text-to-Speech (TTS)**: Provides audio feedback using Google Cloud Text-to-Speech API.
+- **Route Calculation**: Fetches optimal route information using Google Maps Directions API.
+- **Robust Error Handling**: Comprehensive error messages and fallback mechanisms for enhanced user experience.
 
-### `npm run build`
+## 🛠 Technologies Used
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Node.js**: Server-side JavaScript runtime.
+- **Express.js**: Fast and minimalist web framework for handling API requests.
+- **Google Cloud APIs**:
+  - **Text-to-Speech API**: Converts text responses to audio.
+  - **Speech-to-Text API**: Processes voice input from the user.
+  - **Maps API**: Provides route calculations and transit details.
+- **Axios**: HTTP client for making API requests.
+- **Docker**: Containerization for simplified deployment and scaling.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 📂 Project Structure
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+senior-navigation-kiosk/
+├── public/
+│   ├── index.html
+│   ├── deagu-logo.png
+│   ├── bus.png
+│   ├── train.png
+│   └── ...
+├── src/
+│   ├── components/
+│   │   ├── Main.jsx
+│   │   ├── RouteOption.jsx
+│   │   ├── Sub2.jsx
+│   │   ├── Choose.jsx
+│   │   ├── Frame7.jsx
+│   │   ├── TypewriterText.jsx
+│   │   └── ...
+│   ├── services/
+│   │   └── ttsService.js
+│   ├── share/
+│   │   ├── CallButton.jsx
+│   │   ├── BackButton.jsx
+│   │   ├── allshared.css
+│   │   └── ...
+│   ├── styles/
+│   │   ├── Main.css
+│   │   ├── RouteOption.css
+│   │   ├── Sub2.css
+│   │   ├── choose.css
+│   │   └── ...
+│   ├── App.jsx
+│   ├── index.jsx
+│   ├── vars.css
+│   └── ...
+├── .env
+├── package.json
+├── README.md
+├── server.js
+└── ...
+```
 
-### `npm run eject`
+## 🌐 Environment Variables
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Create a `.env` file in the root directory with the following content:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+PORT=3001
+REACT_APP_GOOGLE_API_KEY=your_google_api_key
+REACT_APP_SPEECH_API_KEY=your_speech_api_key
+REACT_APP_TTS_API_KEY=your_tts_api_key
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Replace `your_google_api_key`, `your_speech_api_key`, and `your_tts_api_key` with your actual API keys.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 📥 Installation
 
-## Learn More
+Clone the repository and install the dependencies:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+git clone https://github.com/VISIONED-KNU/Backend.git
+cd Backend
+npm install
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🚀 Usage
 
-### Code Splitting
+Start the server in development mode:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+npm start
+```
 
-### Analyzing the Bundle Size
+The backend server will run on [http://localhost:3001](http://localhost:3001).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🔄 API Endpoints
 
-### Making a Progressive Web App
+### 1. **POST /synthesize**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- **Description**: Converts the provided text to speech audio.
+- **Request**:
+  ```json
+  {
+    "text": "안녕하세요! 환영합니다."
+  }
+  ```
+- **Response**: Returns the audio content in MP3 format.
 
-### Advanced Configuration
+### 2. **POST /recognize**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- **Description**: Converts audio input (base64-encoded) to text.
+- **Request**:
+  ```json
+  {
+    "audio": "base64_audio_string"
+  }
+  ```
+- **Response**:
+  ```json
+  {
+    "transcription": "User speech transcription here."
+  }
+  ```
 
-### Deployment
+### 3. **POST /get-routes**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- **Description**: Fetches route information between origin and destination using Google Maps Directions API.
+- **Request**:
+  ```json
+  {
+    "origin": "35.8840,128.6132",
+    "destination": "Daegu Station"
+  }
+  ```
+- **Response**:
+  ```json
+  {
+    "routes": [
+      {
+        "summary": "Fastest Route",
+        "distance": "5.2 km",
+        "duration": "12 mins",
+        "steps": ["Head north", "Turn left", "Arrive at destination"]
+      }
+    ]
+  }
+  ```
 
-### `npm run build` fails to minify
+## 🐳 Docker Setup
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+To build and run the backend using Docker:
+
+```bash
+docker build -t visioned-backend .
+docker run -p 3001:3001 visioned-backend
+```
+
+This will start the backend server in a Docker container, accessible at [http://localhost:3001](http://localhost:3001).
+
+## 🛡 Error Handling
+
+- **400 Bad Request**: Missing or invalid input data (e.g., empty text or audio content).
+- **500 Internal Server Error**: Issues with external API calls or server logic.
+- **Graceful Fallback**: User-friendly error messages are provided in case of API failures.
+
+## 🤝 Contributing
+
+We welcome contributions! Please follow these steps to contribute:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/your-feature-name`).
+3. Make your changes and commit them (`git commit -m 'Add new feature'`).
+4. Push your branch (`git push origin feature/your-feature-name`).
+5. Create a pull request and describe your changes.
+
+Please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) file for more details.
+
+## 📜 License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
+
+## 💬 Contact
+
+For any questions or support, please contact:
+
+- **Project Lead**: [Your Name](mailto:your-email@example.com)
+- **GitHub**: [VISIONED-KNU](https://github.com/VISIONED-KNU)
+
+---
